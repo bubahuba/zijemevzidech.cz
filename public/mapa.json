@@ -1,0 +1,1172 @@
+{
+  "version": "1.0",
+  "encoding": "UTF-8",
+  "feed": {
+    "xmlns": "http://www.w3.org/2005/Atom",
+    "xmlns$openSearch": "http://a9.com/-/spec/opensearchrss/1.0/",
+    "xmlns$gsx": "http://schemas.google.com/spreadsheets/2006/extended",
+    "id": {
+      "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values"
+    },
+    "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+    "category": [
+      {
+        "scheme": "http://schemas.google.com/spreadsheets/2006",
+        "term": "http://schemas.google.com/spreadsheets/2006#list"
+      }
+    ],
+    "title": { "type": "text", "$t": "Hárok1" },
+    "link": [
+      {
+        "rel": "alternate",
+        "type": "application/atom+xml",
+        "href": "https://docs.google.com/spreadsheets/d/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/pubhtml"
+      },
+      {
+        "rel": "http://schemas.google.com/g/2005#feed",
+        "type": "application/atom+xml",
+        "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values"
+      },
+      {
+        "rel": "http://schemas.google.com/g/2005#post",
+        "type": "application/atom+xml",
+        "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values"
+      },
+      {
+        "rel": "self",
+        "type": "application/atom+xml",
+        "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values?alt\u003djson"
+      }
+    ],
+    "author": [
+      { "name": { "$t": "xyzajacf" }, "email": { "$t": "xyzajacf@gmail.com" } }
+    ],
+    "openSearch$totalResults": { "$t": "34" },
+    "openSearch$startIndex": { "$t": "1" },
+    "entry": [
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cokwr"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "A4 - priestor súčasnej" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.157034, 17.113690, address: Karpatská 2, open: po - ne: 18:00 - 00:00, web: www.a4.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cokwr"
+          }
+        ],
+        "gsx$name": { "$t": "A4 - priestor súčasnej" },
+        "gsx$location": { "$t": "48.157034, 17.113690" },
+        "gsx$address": { "$t": "Karpatská 2" },
+        "gsx$open": { "$t": "po - ne: 18:00 - 00:00" },
+        "gsx$web": { "$t": "www.a4.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cpzh4"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "ART BOOKS COFFEE (ABC)" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.145122, 17.105976, address: Baštová 6B, open: po – pia: 8:00 – 19:00, so: 11:00 – 19:00, web: http://www.artbookscoffee.sk/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cpzh4"
+          }
+        ],
+        "gsx$name": { "$t": "ART BOOKS COFFEE (ABC)" },
+        "gsx$location": { "$t": "48.145122, 17.105976" },
+        "gsx$address": { "$t": "Baštová 6B" },
+        "gsx$open": { "$t": "po – pia: 8:00 – 19:00, so: 11:00 – 19:00" },
+        "gsx$web": { "$t": "http://www.artbookscoffee.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cre1l"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "ATELIER.EM" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.16157870000001, 17.093707499999937, address: Gorazdova 31/ Langsfeldova, open: pia-ne: 12:00 – 19:00 alebo po dohode , web: http://www.atelier-em.eu, contact: 914237709, description: open air galéria\nkurátor: Kata Kissoczy\n\n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cre1l"
+          }
+        ],
+        "gsx$name": { "$t": "ATELIER.EM" },
+        "gsx$location": { "$t": "48.16157870000001, 17.093707499999937" },
+        "gsx$address": { "$t": "Gorazdova 31/ Langsfeldova" },
+        "gsx$open": { "$t": "pia-ne: 12:00 – 19:00 alebo po dohode " },
+        "gsx$web": { "$t": "http://www.atelier-em.eu" },
+        "gsx$contact": { "$t": "914237709" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": {
+          "$t": "open air galéria\nkurátor: Kata Kissoczy\n\n"
+        }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/chk2m"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Aukčná spoločnosť SOGA" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1427278, 17.10824260000004, address: Panská 4, open: ut-pia: 10:00 – 18:00, počas konania výstav\notvorené aj cez víkend v čase 10:00 – 18:00, web: http://www.soga.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/chk2m"
+          }
+        ],
+        "gsx$name": { "$t": "Aukčná spoločnosť SOGA" },
+        "gsx$location": { "$t": "48.1427278, 17.10824260000004" },
+        "gsx$address": { "$t": "Panská 4" },
+        "gsx$open": {
+          "$t": "ut-pia: 10:00 – 18:00, počas konania výstav\notvorené aj cez víkend v čase 10:00 – 18:00"
+        },
+        "gsx$web": { "$t": "http://www.soga.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/ciyn3"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "DANUBIANA Meulensteen Art Museum" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.0351396,17.231556100000034, address: Čunovo – Vodné dielo, open: ut – ne: 10:00 – 18:00, web: http://www.danubiana.sk, description: Necelých 20 kilometrov južne od centra Bratislavy na cípe polostrova v strede mohutného toku Dunaja bolo 9. septembra 2000 otvorené jedno z najmladších európskych múzeí moderného umenia – Danubiana.  Nezvyčajná poloha na rozhraní troch susediacich krajín - Slovenska, Rakúska, Maďarska, ale predovšetkým veľkolepý kontrast šírej vodnej hladiny, vysokej oblohy a nekonečných brehov hrádze vytvárajú rámec pôsobivej architektúry, evokujúcej tvary rímskej galéry uviaznutej na plytčine. Architektúra tu vo svojej rôznorodosti dáva príležitosť mnohým výstavným aktivitám. \nV súčasnosti Danubiana prechádza dostavbou, ktorá bude dokončená v septembri 2014. Súčasťou dostavby bude okrem rozšírenia expozičných priestorov aj zveľadenie parkovacích plôch, rozšírenie Art Shopu a nová reštaurácia.\nPôvodná budova Danubiany však bude verejnosti sprístupnená už 15. júna výstavou profesora Jiřího Načeradského v zbierke Ivana Melicherčíka. \nPolostrov umenia vás očakáva a ponúka jedinečnú symbiózu výtvarných diel, modernej architektúry a okolitej prírody.\n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/ciyn3"
+          }
+        ],
+        "gsx$name": { "$t": "DANUBIANA Meulensteen Art Museum" },
+        "gsx$location": { "$t": "48.0351396,17.231556100000034" },
+        "gsx$address": { "$t": "Čunovo – Vodné dielo" },
+        "gsx$open": { "$t": "ut – ne: 10:00 – 18:00" },
+        "gsx$web": { "$t": "http://www.danubiana.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": {
+          "$t": "Necelých 20 kilometrov južne od centra Bratislavy na cípe polostrova v strede mohutného toku Dunaja bolo 9. septembra 2000 otvorené jedno z najmladších európskych múzeí moderného umenia – Danubiana.  Nezvyčajná poloha na rozhraní troch susediacich krajín - Slovenska, Rakúska, Maďarska, ale predovšetkým veľkolepý kontrast šírej vodnej hladiny, vysokej oblohy a nekonečných brehov hrádze vytvárajú rámec pôsobivej architektúry, evokujúcej tvary rímskej galéry uviaznutej na plytčine. Architektúra tu vo svojej rôznorodosti dáva príležitosť mnohým výstavným aktivitám. \nV súčasnosti Danubiana prechádza dostavbou, ktorá bude dokončená v septembri 2014. Súčasťou dostavby bude okrem rozšírenia expozičných priestorov aj zveľadenie parkovacích plôch, rozšírenie Art Shopu a nová reštaurácia.\nPôvodná budova Danubiany však bude verejnosti sprístupnená už 15. júna výstavou profesora Jiřího Načeradského v zbierke Ivana Melicherčíka. \nPolostrov umenia vás očakáva a ponúka jedinečnú symbiózu výtvarných diel, modernej architektúry a okolitej prírody.\n"
+        }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/ckd7g"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "DOT. Contemporary Art Gallery" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.145967, 17.119997, address: Lazaretská 13, open: po - pia: 8:00 - 19:00; so: 12:00 - 19:00, web: http://dotgallery.sk/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/ckd7g"
+          }
+        ],
+        "gsx$name": { "$t": "DOT. Contemporary Art Gallery" },
+        "gsx$location": { "$t": "48.145967, 17.119997" },
+        "gsx$address": { "$t": "Lazaretská 13" },
+        "gsx$open": { "$t": "po - pia: 8:00 - 19:00; so: 12:00 - 19:00" },
+        "gsx$web": { "$t": "http://dotgallery.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/clrrx"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Francúzsky inštitút na Slovensku" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.143559, 17.107775, address: Sedlárska 7, web: https://institutfrancais.sk/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/clrrx"
+          }
+        ],
+        "gsx$name": { "$t": "Francúzsky inštitút na Slovensku" },
+        "gsx$location": { "$t": "48.143559, 17.107775" },
+        "gsx$address": { "$t": "Sedlárska 7" },
+        "gsx$open": { "$t": "" },
+        "gsx$web": { "$t": "https://institutfrancais.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cyevm"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": {
+          "type": "text",
+          "$t": "Galéria architektúry Spolku architektov Slovenska"
+        },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.142589, 17.107674, address: Panská 15, 1. poschodie, open: po - pia: 11:00 - 17:00, web: http://www.sasarch.sk, description: Galéria architektúry SAS sa nachádza v Balassovom paláci postaveného v neskoro barokovom štýle. Je zameraná na prezentáciu súčasnej architektúry a aktuálne dianie na slovenskej i zahraničnej architektonickej scéne."
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cyevm"
+          }
+        ],
+        "gsx$name": {
+          "$t": "Galéria architektúry Spolku architektov Slovenska"
+        },
+        "gsx$location": { "$t": "48.142589, 17.107674" },
+        "gsx$address": { "$t": "Panská 15, 1. poschodie" },
+        "gsx$open": { "$t": "po - pia: 11:00 - 17:00" },
+        "gsx$web": { "$t": "http://www.sasarch.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": {
+          "$t": "Galéria architektúry SAS sa nachádza v Balassovom paláci postaveného v neskoro barokovom štýle. Je zameraná na prezentáciu súčasnej architektúry a aktuálne dianie na slovenskej i zahraničnej architektonickej scéne."
+        }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cztg3"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria Bořek Šípek" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.140459, 17.109536, address: Nám. Ľ. Štúra 2, open: po – pia: 9.00 – 16.00, web: http://www.palaceoffice.sk/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cztg3"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Bořek Šípek" },
+        "gsx$location": { "$t": "48.140459, 17.109536" },
+        "gsx$address": { "$t": "Nám. Ľ. Štúra 2" },
+        "gsx$open": { "$t": "po – pia: 9.00 – 16.00" },
+        "gsx$web": { "$t": "http://www.palaceoffice.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d180g"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria Cit" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.14701849999999, 17.112498500000015, address: Heydukova 15, open: po – pi: 13:00 – 18:00, voľný vstup, web: http://www.galeriacit.sk, contact: 0905203444, 0908424207, description: Malá rodinná galéria, ktorá dáva priestor profesionálnym výtvarníkom na prezentáciu a predaj ich diel, formou autorských výstav. Venuje sa iba súčasným autorom.\n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d180g"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Cit" },
+        "gsx$location": { "$t": "48.14701849999999, 17.112498500000015" },
+        "gsx$address": { "$t": "Heydukova 15" },
+        "gsx$open": { "$t": "po – pi: 13:00 – 18:00, voľný vstup" },
+        "gsx$web": { "$t": "http://www.galeriacit.sk" },
+        "gsx$contact": { "$t": "0905203444, 0908424207" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": {
+          "$t": "Malá rodinná galéria, ktorá dáva priestor profesionálnym výtvarníkom na prezentáciu a predaj ich diel, formou autorských výstav. Venuje sa iba súčasným autorom.\n"
+        }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d2mkx"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria Čin Čin" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.14644000000001, 17.10145239999997, address: Podjavorinskej 4a, open: po – pi: 14:00 – 18:30, alebo po dohode, web: http://www.galeriacincin.sk, contact: 905206292"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d2mkx"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Čin Čin" },
+        "gsx$location": { "$t": "48.14644000000001, 17.10145239999997" },
+        "gsx$address": { "$t": "Podjavorinskej 4a" },
+        "gsx$open": { "$t": "po – pi: 14:00 – 18:30, alebo po dohode" },
+        "gsx$web": { "$t": "http://www.galeriacincin.sk" },
+        "gsx$contact": { "$t": "905206292" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cssly"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria Hit" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.142028, 17.107500, address: Hviezdoslavovo nám. 18, open: ut - št: 15:00 - 18:00, web: http://www.galeriahit.com/sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cssly"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Hit" },
+        "gsx$location": { "$t": "48.142028, 17.107500" },
+        "gsx$address": { "$t": "Hviezdoslavovo nám. 18" },
+        "gsx$open": { "$t": "ut - št: 15:00 - 18:00" },
+        "gsx$web": { "$t": "http://www.galeriahit.com/sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cu76f"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria MEDIUM" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.141973, 17.107424, address: Hviezdoslavovo nám. 18, open: ut - št: 12:00 - 19:00; st. pi, so, ne: 10:00 - 17:00, web: http://www.vsvu.sk/galeria-medium/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cu76f"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria MEDIUM" },
+        "gsx$location": { "$t": "48.141973, 17.107424" },
+        "gsx$address": { "$t": "Hviezdoslavovo nám. 18" },
+        "gsx$open": {
+          "$t": "ut - št: 12:00 - 19:00; st. pi, so, ne: 10:00 - 17:00"
+        },
+        "gsx$web": { "$t": "http://www.vsvu.sk/galeria-medium/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cvlqs"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": {
+          "type": "text",
+          "$t": "Galéria Mesta Bratislavy - Pálfyho palác"
+        },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.14219180000001, 17.107113400000003, address: Panská 19, open: ut – ne: 11.00 – 18.00, web: http://http://www.gmb.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cvlqs"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Mesta Bratislavy - Pálfyho palác" },
+        "gsx$location": { "$t": "48.14219180000001, 17.107113400000003" },
+        "gsx$address": { "$t": "Panská 19" },
+        "gsx$open": { "$t": "ut – ne: 11.00 – 18.00" },
+        "gsx$web": { "$t": "http://http//www.gmb.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cx0b9"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": {
+          "type": "text",
+          "$t": "Galéria Mesta Bratislavy - Mirbachov palác"
+        },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.14401160000001, 17.10853069999996, address: Františkánske nám. 11, open: ut – ne: 11.00 – 18.00 , web: http://www.gmb.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/cx0b9"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Mesta Bratislavy - Mirbachov palác" },
+        "gsx$location": { "$t": "48.14401160000001, 17.10853069999996" },
+        "gsx$address": { "$t": "Františkánske nám. 11" },
+        "gsx$open": { "$t": "ut – ne: 11.00 – 18.00 " },
+        "gsx$web": { "$t": "http://www.gmb.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d9ney"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": " Galéria Nedbalka" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1440858, 17.111262600000032, address: Nedbalova 17, open: ut – ne: 13:00 – 19:00, web: http://www.nedbalka.sk, description: Vstupné:\nDospelí 4€ (v cene vstupného je káva alebo čaj v kaviarni zadarmo)\nZľavenené 1-2€\nPrvý utorok v mesiaci je vstup do galérie bezplatný\nBudova Galérie Nedbalka ukrýva nečakane pôsobivý interiér s vnútorným členením, pripomínajúcim Guggenheimovo múzeum v New Yorku. Štyri poschodia však predovšetkým poskytujú priestor pre stálu expozíciu, venovanú zrodu a vývinu výtvarnej moderny Slovenska. Obraz dejín maliarstva a sochárstva na Slovensku v 20. storočí je vystavaný z diel L. Mednyánszkeho, D. Skutezkého, M.  Galandu, M. Benku, M. Laluhu, M. Paštéku, L. Gudernu a mnohých ďalších tvorcov, ktorí zásadne ovplyvnili vývoj umenia v tejto krajine. Na prízemí nájdu návštevníci aktuálnu výstavu primárne venovanú tvorbe slovenských autorov.\n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d9ney"
+          }
+        ],
+        "gsx$name": { "$t": " Galéria Nedbalka" },
+        "gsx$location": { "$t": "48.1440858, 17.111262600000032" },
+        "gsx$address": { "$t": "Nedbalova 17" },
+        "gsx$open": { "$t": "ut – ne: 13:00 – 19:00" },
+        "gsx$web": { "$t": "http://www.nedbalka.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": {
+          "$t": "Vstupné:\nDospelí 4€ (v cene vstupného je káva alebo čaj v kaviarni zadarmo)\nZľavenené 1-2€\nPrvý utorok v mesiaci je vstup do galérie bezplatný\nBudova Galérie Nedbalka ukrýva nečakane pôsobivý interiér s vnútorným členením, pripomínajúcim Guggenheimovo múzeum v New Yorku. Štyri poschodia však predovšetkým poskytujú priestor pre stálu expozíciu, venovanú zrodu a vývinu výtvarnej moderny Slovenska. Obraz dejín maliarstva a sochárstva na Slovensku v 20. storočí je vystavaný z diel L. Mednyánszkeho, D. Skutezkého, M.  Galandu, M. Benku, M. Laluhu, M. Paštéku, L. Gudernu a mnohých ďalších tvorcov, ktorí zásadne ovplyvnili vývoj umenia v tejto krajine. Na prízemí nájdu návštevníci aktuálnu výstavu primárne venovanú tvorbe slovenských autorov.\n"
+        }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/db1zf"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria Umelka" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1410728, 17.11740009999994, address: Dostojevského rad 2, open: ut – ne: 12:00 – 18:00, web: www.svu.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/db1zf"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria Umelka" },
+        "gsx$location": { "$t": "48.1410728, 17.11740009999994" },
+        "gsx$address": { "$t": "Dostojevského rad 2" },
+        "gsx$open": { "$t": "ut – ne: 12:00 – 18:00" },
+        "gsx$web": { "$t": "www.svu.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dcgjs"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria 19" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.145229, 17.120373299999983, address: Lazaretská 19, open: ut  - ne: 14:00 – 19:00, web: http://www.galeria19.sk, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dcgjs"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria 19" },
+        "gsx$location": { "$t": "48.145229, 17.120373299999983" },
+        "gsx$address": { "$t": "Lazaretská 19" },
+        "gsx$open": { "$t": "ut  - ne: 14:00 – 19:00" },
+        "gsx$web": { "$t": "http://www.galeria19.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/ddv49"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Gallery Gwerk" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.159700, 17.161533, address: Tomášikova 19, open: ut, št: 14:00 - 18:00 alebo po dohode , web: http://www.gallerygwerk.sk, description: Gallery Gwerk - Umenie, ktoré sa páči. Galéria súčasného umenia so zameraním najmä na slovenských etablovaných autorov (maľba, grafika). Okrem svojich kamenných priestorov organizuje aj výstavy v Galérii SPP – Mlynské nivy 44/c, Bratislava. Galéria SPP je otvorená po – pia: 11.00 – 18.00, vstup voľný. V prípade záujmu poskytujeme osobnú prehliadku výstav."
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/ddv49"
+          }
+        ],
+        "gsx$name": { "$t": "Gallery Gwerk" },
+        "gsx$location": { "$t": "48.159700, 17.161533" },
+        "gsx$address": { "$t": "Tomášikova 19" },
+        "gsx$open": { "$t": "ut, št: 14:00 - 18:00 alebo po dohode " },
+        "gsx$web": { "$t": "http://www.gallerygwerk.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": {
+          "$t": "Gallery Gwerk - Umenie, ktoré sa páči. Galéria súčasného umenia so zameraním najmä na slovenských etablovaných autorov (maľba, grafika). Okrem svojich kamenných priestorov organizuje aj výstavy v Galérii SPP – Mlynské nivy 44/c, Bratislava. Galéria SPP je otvorená po – pia: 11.00 – 18.00, vstup voľný. V prípade záujmu poskytujeme osobnú prehliadku výstav."
+        }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d415a"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Gandy gallery" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1427863, 17.11675969999999, address: Sienkiewiczova 4, open: str - pi:  14:00 - 18:30, so - iba po dohode, web: www.gandy-gallery.com"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d415a"
+          }
+        ],
+        "gsx$name": { "$t": "Gandy gallery" },
+        "gsx$location": { "$t": "48.1427863, 17.11675969999999" },
+        "gsx$address": { "$t": "Sienkiewiczova 4" },
+        "gsx$open": { "$t": "str - pi:  14:00 - 18:30, so - iba po dohode" },
+        "gsx$web": { "$t": "www.gandy-gallery.com" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d5fpr"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Galéria SUMEC" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.168076, 17.175968, address: Ivánska cesta 21, open: po - pia: 8:00 - 16:00, okrem všetkých školských prázdnin, web: http://www.galeriasumec.sk/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d5fpr"
+          }
+        ],
+        "gsx$name": { "$t": "Galéria SUMEC" },
+        "gsx$location": { "$t": "48.168076, 17.175968" },
+        "gsx$address": { "$t": "Ivánska cesta 21" },
+        "gsx$open": {
+          "$t": "po - pia: 8:00 - 16:00, okrem všetkých školských prázdnin"
+        },
+        "gsx$web": { "$t": "http://www.galeriasumec.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d6ua4"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Goetheho inštitút" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.148433, 17.106315, address: Panenská 33, web: https://www.goethe.de/ins/sk/sk/index.html?wt_sc\u003dslovensko"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d6ua4"
+          }
+        ],
+        "gsx$name": { "$t": "Goetheho inštitút" },
+        "gsx$location": { "$t": "48.148433, 17.106315" },
+        "gsx$address": { "$t": "Panenská 33" },
+        "gsx$open": { "$t": "" },
+        "gsx$web": {
+          "$t": "https://www.goethe.de/ins/sk/sk/index.html?wt_sc\u003dslovensko"
+        },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d88ul"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "GUBA" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.165807, 17.177820, address: GBC Galvaniho 7, 15, 17, open: denne 8:00 - 19:00, web: www.guba.sk, contact: 907150345"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/d88ul"
+          }
+        ],
+        "gsx$name": { "$t": "GUBA" },
+        "gsx$location": { "$t": "48.165807, 17.177820" },
+        "gsx$address": { "$t": "GBC Galvaniho 7, 15, 17" },
+        "gsx$open": { "$t": "denne 8:00 - 19:00" },
+        "gsx$web": { "$t": "www.guba.sk" },
+        "gsx$contact": { "$t": "907150345" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dkvya"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Kunsthalle Bratislava" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1453054, 17.111827199999993, address: Dom umenia / Kunsthalle Bratislava, Nám. SNP 12, open: po: 12:00 – 19:00, ut: zatvorené, str: 13:00 – 20:00, štv - ne: 12:00 – 19:00, web: http://www.kunsthallebratislava.sk/, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dkvya"
+          }
+        ],
+        "gsx$name": { "$t": "Kunsthalle Bratislava" },
+        "gsx$location": { "$t": "48.1453054, 17.111827199999993" },
+        "gsx$address": {
+          "$t": "Dom umenia / Kunsthalle Bratislava, Nám. SNP 12"
+        },
+        "gsx$open": {
+          "$t": "po: 12:00 – 19:00, ut: zatvorené, str: 13:00 – 20:00, štv - ne: 12:00 – 19:00"
+        },
+        "gsx$web": { "$t": "http://www.kunsthallebratislava.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dmair"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Múzeum Arthura Fleischmanna" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.144353, 17.107632, address: Biela 6, open: ut - pi: 10:00 - 17:00; so - ne: 11:00 - 18:00, web: http://www.muzeum.bratislava.sk/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dmair"
+          }
+        ],
+        "gsx$name": { "$t": "Múzeum Arthura Fleischmanna" },
+        "gsx$location": { "$t": "48.144353, 17.107632" },
+        "gsx$address": { "$t": "Biela 6" },
+        "gsx$open": { "$t": "ut - pi: 10:00 - 17:00; so - ne: 11:00 - 18:00" },
+        "gsx$web": { "$t": "http://www.muzeum.bratislava.sk/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dnp34"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "PHOTOPORT" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.116498, 17.111157, address: Rovniankova 4, open: st. – so: 16.00 – 19.00, web: http://www.facebook.com/photoportgallery, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dnp34"
+          }
+        ],
+        "gsx$name": { "$t": "PHOTOPORT" },
+        "gsx$location": { "$t": "48.116498, 17.111157" },
+        "gsx$address": { "$t": "Rovniankova 4" },
+        "gsx$open": { "$t": "st. – so: 16.00 – 19.00" },
+        "gsx$web": { "$t": "http://www.facebook.com/photoportgallery" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dp3nl"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Poľský inštitút" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.145103, 17.111303200000066, address: Nám. SNP 27, open: po – št: 10:00 – 17:00; pi: 9:00 – 15:00, web: http://www.polinst.sk, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dp3nl"
+          }
+        ],
+        "gsx$name": { "$t": "Poľský inštitút" },
+        "gsx$location": { "$t": "48.145103, 17.111303200000066" },
+        "gsx$address": { "$t": "Nám. SNP 27" },
+        "gsx$open": { "$t": "po – št: 10:00 – 17:00; pi: 9:00 – 15:00" },
+        "gsx$web": { "$t": "http://www.polinst.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/df9om"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Roman Fecik Gallery" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1450974, 17.10754380000003, address: Zámočnícka 8, web: http://www.romanfecikgallery.sk, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/df9om"
+          }
+        ],
+        "gsx$name": { "$t": "Roman Fecik Gallery" },
+        "gsx$location": { "$t": "48.1450974, 17.10754380000003" },
+        "gsx$address": { "$t": "Zámočnícka 8" },
+        "gsx$open": { "$t": "" },
+        "gsx$web": { "$t": "http://www.romanfecikgallery.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dgo93"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Satelit" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.149139,17.114107\n, address: Kollárovo nám. 10, Hurbanove kasárne, open: st–ne: 13:00 – 18:00; ut: 10:00 – 18:00, web: http://www.sdc.sk, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dgo93"
+          }
+        ],
+        "gsx$name": { "$t": "Satelit" },
+        "gsx$location": { "$t": "48.149139,17.114107\n" },
+        "gsx$address": { "$t": "Kollárovo nám. 10, Hurbanove kasárne" },
+        "gsx$open": { "$t": "st–ne: 13:00 – 18:00; ut: 10:00 – 18:00" },
+        "gsx$web": { "$t": "http://www.sdc.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/di2tg"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Slovenské múzeum dizajnu" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.149099,17.114235, address: Kollárovo nám. 10, Hurbanove kasárne, open: ut – ne: 13:00 – 18:00, web: http://www.sdc.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/di2tg"
+          }
+        ],
+        "gsx$name": { "$t": "Slovenské múzeum dizajnu" },
+        "gsx$location": { "$t": "48.149099,17.114235" },
+        "gsx$address": { "$t": "Kollárovo nám. 10, Hurbanove kasárne" },
+        "gsx$open": { "$t": "ut – ne: 13:00 – 18:00" },
+        "gsx$web": { "$t": "http://www.sdc.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/djhdx"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Slovenská národná galéria" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1401484, 17.109467699999982, address: Námestie Ľudovíta Štúra 4, open: ut - ne: 10:00 - 18:00, web: http://www.sng.sk"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/djhdx"
+          }
+        ],
+        "gsx$name": { "$t": "Slovenská národná galéria" },
+        "gsx$location": { "$t": "48.1401484, 17.109467699999982" },
+        "gsx$address": { "$t": "Námestie Ľudovíta Štúra 4" },
+        "gsx$open": { "$t": "ut - ne: 10:00 - 18:00" },
+        "gsx$web": { "$t": "http://www.sng.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dw4je"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "Stredoeurópsky dom fotografie" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.143255, 17.106056699999954, address: Prepoštská ulica 4, open: ut – ne, 13.00 – 18.00, web: http://www.sedf.sk, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dw4je"
+          }
+        ],
+        "gsx$name": { "$t": "Stredoeurópsky dom fotografie" },
+        "gsx$location": { "$t": "48.143255, 17.106056699999954" },
+        "gsx$address": { "$t": "Prepoštská ulica 4" },
+        "gsx$open": { "$t": "ut – ne, 13.00 – 18.00" },
+        "gsx$web": { "$t": "http://www.sedf.sk" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dxj3v"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "tranzit.sk " },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.1579426, 17.11388790000001, address: Beskydská 12, open: st - pi: 14:00 - 19:00; so: 13:00 - 18:00, web: http://sk.tranzit.org/en, description: \n"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dxj3v"
+          }
+        ],
+        "gsx$name": { "$t": "tranzit.sk " },
+        "gsx$location": { "$t": "48.1579426, 17.11388790000001" },
+        "gsx$address": { "$t": "Beskydská 12" },
+        "gsx$open": { "$t": "st - pi: 14:00 - 19:00; so: 13:00 - 18:00" },
+        "gsx$web": { "$t": "http://sk.tranzit.org/en" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "\n" }
+      },
+      {
+        "id": {
+          "$t": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dyxo8"
+        },
+        "updated": { "$t": "2020-01-26T04:32:59.614Z" },
+        "category": [
+          {
+            "scheme": "http://schemas.google.com/spreadsheets/2006",
+            "term": "http://schemas.google.com/spreadsheets/2006#list"
+          }
+        ],
+        "title": { "type": "text", "$t": "WHITE \u0026 WEISS GALLERY" },
+        "content": {
+          "type": "text",
+          "$t": "location: 48.145604, 17.121819, address: Grösslingová 50, open: ut - pi: 13:00 - 18:00, web: http://www.whiteweiss.com/"
+        },
+        "link": [
+          {
+            "rel": "self",
+            "type": "application/atom+xml",
+            "href": "https://spreadsheets.google.com/feeds/list/10Xn3Cek6T-b2BC-PT1PXHAW2E-JkX1uAxwN59rx6FT4/od6/public/values/dyxo8"
+          }
+        ],
+        "gsx$name": { "$t": "WHITE \u0026 WEISS GALLERY" },
+        "gsx$location": { "$t": "48.145604, 17.121819" },
+        "gsx$address": { "$t": "Grösslingová 50" },
+        "gsx$open": { "$t": "ut - pi: 13:00 - 18:00" },
+        "gsx$web": { "$t": "http://www.whiteweiss.com/" },
+        "gsx$contact": { "$t": "" },
+        "gsx$category": { "$t": "" },
+        "gsx$description": { "$t": "" }
+      }
+    ]
+  }
+}
