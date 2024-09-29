@@ -602,10 +602,9 @@ const Dropdown = ({ list, options }) => {
   const [listening, setListening] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(
-    () => listenForOutsideClicks(listening, setListening, menuRef, setIsOpen),
-    [listening]
-  );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() =>
+    listenForOutsideClicks(listening, setListening, menuRef, setIsOpen));
 
   return (
     <div style={{ position: "relative" }}>
@@ -766,29 +765,30 @@ const MapComponent = withScriptjs(
           />
         );
       })}
-      {props.scope.state.markerOpen !== null && 
-        <InfoWindow
-          options={{
-            pixelOffset: { width: 0, height: -23 },
-            closeBoxMargin: 20,
-            pane: "floatPane",
-          }}
-          position={
-            props.scope.state.markers[props.scope.state.markerOpen]["position"]
-          }
-          onCloseClick={() => props.scope.handleToggleOpen(null)}
-        >
-          <div
-            className="infoBox"
-            dangerouslySetInnerHTML={{
-              __html:
-                props.scope.state.markers[props.scope.state.markerOpen][
-                  "infoWindow"
-                ]["content"],
+      {props.scope.state.markerOpen &&
+        props.scope.state.markers[props.scope.state.markerOpen] && (
+          <InfoWindow
+            options={{
+              pixelOffset: { width: 0, height: -23 },
+              closeBoxMargin: 20,
+              pane: "floatPane",
             }}
-          />
-        </InfoWindow>
-      }
+            position={
+              props.scope.state.markers[props.scope.state.markerOpen].position
+            }
+            onCloseClick={() => props.scope.handleToggleOpen(null)}
+          >
+            <div
+              className="infoBox"
+              dangerouslySetInnerHTML={{
+                __html:
+                  props.scope.state.markers[props.scope.state.markerOpen][
+                    "infoWindow"
+                  ]["content"],
+              }}
+            />
+          </InfoWindow>
+        )}
     </GoogleMap>
   ))
 );
