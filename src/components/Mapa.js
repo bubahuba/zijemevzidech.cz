@@ -765,7 +765,7 @@ const MapComponent = withScriptjs(
           />
         );
       })}
-      {props.scope.state.markerOpen &&
+      {props.scope.state.markerOpen > -1 &&
         props.scope.state.markers[props.scope.state.markerOpen] && (
           <InfoWindow
             options={{
