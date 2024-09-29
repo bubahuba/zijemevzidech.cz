@@ -1,8 +1,8 @@
-import React from "react";
-import {createRoot} from "react-dom/client";
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import "./index.scss";
 import "./App.scss";
-import 'photoswipe/dist/photoswipe.css'
+import "photoswipe/dist/photoswipe.css";
 
 import Odvodo from "./Odvodo";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -15,7 +15,14 @@ root.render(
   <Router>
     <Routes>
       <Route path="/odvodo/:list?" element={<Odvodo />} />
-      <Route path="/:category?/:entry?" element={<Layout />}/>
+      <Route
+        path="/:category?/:entry?"
+        element={
+          <StrictMode>
+            <Layout />
+          </StrictMode>
+        }
+      />
     </Routes>
   </Router>
 );

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "photoswipe": "^5.4.4",
     "react": "^18.3.1",
+    "react-awesome-loaders": "^0.1.37",
     "react-dom": "^18.3.1",
     "react-google-maps": "^9.4.5",
     "react-photoswipe-gallery": "^3.0.2",

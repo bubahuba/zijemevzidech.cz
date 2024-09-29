@@ -58,13 +58,13 @@ export const Layout = () => {
         fetchData()
     }, [category, entry])
 
-  /*  if (notFound) return (
+    if (notFound) return (
         <div className="App" style={{ backgroundColor: defaultColor }}>
             <Sidebar navItems={navItems} currentItem={category ? category : 'about'} />
             <NotFound />
         </div>
     )
-*/
+
     return (
         <div className="App" style={{ backgroundColor: defaultColor }}>
             <Sidebar navItems={navItems} currentItem={category ? category : 'about'} />
