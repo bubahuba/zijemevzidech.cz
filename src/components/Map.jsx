@@ -45,10 +45,12 @@ export const Map = ({ entries, lists, list, router }) => {
     };
 
     const panMap = (latlng) => {
+        if(!_map) return;
         return _map.panTo(latlng);
     };
 
     const getMyGPS = useCallback((gpsAllow) => {
+        if (!gpsAllow) return;
         setGpsLoading(true)
         var GPSoptions = {
             enableHighAccuracy: false,
@@ -60,12 +62,10 @@ export const Map = ({ entries, lists, list, router }) => {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
-            if (firstTrack) {
-                setGpsLoading(false)
-                panMap(thisPos);
-                setMarkerOpen(null)
-                closeMenu();
-            }
+            setGpsLoading(false)
+            panMap(thisPos);
+            setMarkerOpen(null)
+            closeMenu();
             setMyGPS(thisPos)
             setFirstTrack(false)
         };
@@ -94,7 +94,7 @@ export const Map = ({ entries, lists, list, router }) => {
 
     const toggleMyGPS = (currentGPS) => {
         setAllowGPS(!currentGPS)
-        setFirstTrack(true)
+        setFirstTrack(!currentGPS)
         getMyGPS(!currentGPS)
     };
 
