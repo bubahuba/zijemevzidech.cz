@@ -1,25 +1,26 @@
-import React, { Component, useState, useRef, useEffect } from "react";
-import { renderToString } from "react-dom/server";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { SunspotLoader } from "react-awesome-loaders";
-
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow,
-} from "react-google-maps";
 import { Logo } from "./Logo";
+import { renderToString } from "react-dom/server";
 
 export const defaultColor = window.defaultColor;
 
-const defaultMapCenter = {
-  // default map center
-  lat: 49.2177523,
-  lng: 15.8794353,
+export const styles = {
+  active: {
+    backgroundColor: defaultColor,
+    color: "white",
+  },
+  menubutton: {
+    color: defaultColor,
+  },
+  mapa: {
+    width: "100%",
+    height: "100%",
+  },
 };
-const mapStyles = [
+
+export const mapStyles = [
   {
     elementType: "geometry.fill",
     stylers: [
@@ -227,7 +228,8 @@ const mapStyles = [
     ],
   },
 ];
-const mapStylesDark = [
+
+export const mapStylesDark = [
   {
     elementType: "geometry.fill",
     stylers: [
@@ -440,7 +442,14 @@ const mapStylesDark = [
     ],
   },
 ];
-const iconActive = (dark) => ({
+
+export const defaultMapCenter = {
+  // default map center
+  lat: 49.2177523,
+  lng: 15.8794353,
+};
+
+export const iconActive = (dark) => ({
   path: "M26.931,14.891c0,6.7-12.132,22.229-12.132,22.229S2.667,21.591,2.667,14.891 C2.667,8.19,8.1,2.759,14.799,2.759C21.5,2.759,26.931,8.19,26.931,14.891z M14.799,12.854c-1.15,0-2.083,0.929-2.083,2.075 c0,1.146,0.933,2.076,2.083,2.076s2.083-0.929,2.083-2.076C16.881,13.783,15.949,12.854,14.799,12.854z",
   fillColor: dark ? "#000000" : "#FFFFFF",
   strokeColor: defaultColor,
@@ -449,7 +458,8 @@ const iconActive = (dark) => ({
   strokeWeight: 4,
   scale: 1.2,
 });
-const icon = {
+
+export const icon = {
   path: "M26.931,14.891c0,6.7-12.132,22.229-12.132,22.229S2.667,21.591,2.667,14.891 C2.667,8.19,8.1,2.759,14.799,2.759C21.5,2.759,26.931,8.19,26.931,14.891z M14.799,12.854c-1.15,0-2.083,0.929-2.083,2.075 c0,1.146,0.933,2.076,2.083,2.076s2.083-0.929,2.083-2.076C16.881,13.783,15.949,12.854,14.799,12.854z",
   fillColor: defaultColor,
   strokeColor: "#FFFFFF",
@@ -458,7 +468,8 @@ const icon = {
   strokeWeight: 4,
   scale: 1,
 };
-const menuIconGpsOn = (active) => {
+
+export const menuIconGpsOn = (active) => {
   return (
     <svg
       width="20px"
@@ -479,7 +490,8 @@ const menuIconGpsOn = (active) => {
     </svg>
   );
 };
-const menuIconGpsOff = () => {
+
+export const menuIconGpsOff = () => {
   return (
     <svg
       width="20px"
@@ -498,7 +510,8 @@ const menuIconGpsOff = () => {
     </svg>
   );
 };
-const iconGPS = {
+
+export const iconGPS = {
   path: "M11.069,2.444c-4.275,0-7.753,3.464-7.753,7.722c0,4.261,3.478,7.727,7.753,7.727s7.753-3.466,7.753-7.727C18.82,5.908,15.342,2.444,11.069,2.444z M11.069,16.436c-3.467,0-6.288-2.812-6.288-6.27c0-3.456,2.821-6.267,6.288-6.267c3.465,0,6.286,2.811,6.288,6.266C17.357,13.624,14.536,16.436,11.069,16.436z M16.357,10.167c0,2.906-2.372,5.27-5.288,5.27s-5.288-2.364-5.288-5.27c0-2.904,2.372-5.267,5.288-5.267C13.983,4.9,16.355,7.263,16.357,10.167z",
   fillColor: "#FF0DD1",
   fillOpacity: 1,
@@ -506,75 +519,22 @@ const iconGPS = {
   strokeWeight: 0,
   scale: 1,
 };
-const getLanLng = (latlng) => {
+
+export const getLanLng = (latlng) => {
   var tmp = latlng.split(",");
   return {
     lat: parseFloat(tmp[0]),
     lng: parseFloat(tmp[1]),
   };
 };
-const getGallery = (item) => {
+
+export const getGallery = (item) => {
   const _return = [];
   item[4] && _return.push(item[4]);
   item[5] && _return.push(item[5]);
   item[6] && _return.push(item[6]);
   item[7] && _return.push(item[7]);
   return _return;
-};
-
-const getInfoWindowContent = (item, scope) => {
-  const mappedItem = {
-    name: item[0],
-    address: item[1],
-    text: item[3],
-    gallery: getGallery(item),
-  };
-  const _content = (
-    <div className="infobox">
-      <h2>{mappedItem.name}</h2>
-      <h3>{mappedItem.address}</h3>
-      {mappedItem.text && (
-        <div
-          className="html"
-          dangerouslySetInnerHTML={{ __html: mappedItem.text }}
-        />
-      )}
-      {mappedItem.gallery.length > 0 && (
-        <div className="gallery">
-          {getImage(mappedItem.gallery[0], mappedItem.name, scope, 1)}
-          {mappedItem.gallery[1] &&
-            getImage(mappedItem.gallery[1], mappedItem.name, scope, 2)}
-          {mappedItem.gallery[2] &&
-            getImage(mappedItem.gallery[2], mappedItem.name, scope, 3)}
-          {mappedItem.gallery[3] &&
-            getImage(mappedItem.gallery[3], mappedItem.name, scope, 4)}
-        </div>
-      )}
-    </div>
-  );
-  return {
-    content: renderToString(_content),
-    pane: "floatPane",
-    closeBoxMargin: "20px",
-    pixelOffset: { width: -200, height: 0 },
-    disableAutoPan: false,
-    enableEventPropagation: false,
-  };
-};
-
-const getImage = (url, title = "", scope, index) => {
-  return (
-    <a
-      href={`https://lh3.googleusercontent.com/d/${url}`}
-      data-fslightbox={title}
-    >
-      <img
-        src={`https://lh3.googleusercontent.com/d/${url}=w300`}
-        alt={title}
-        className="thumb"
-      />
-    </a>
-  );
 };
 
 const listenForOutsideClicks = (
@@ -597,14 +557,15 @@ const listenForOutsideClicks = (
   };
 };
 
-const Dropdown = ({ list, options }) => {
+export const Dropdown = ({ list, options }) => {
   const menuRef = useRef(null);
   const [listening, setListening] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() =>
-    listenForOutsideClicks(listening, setListening, menuRef, setIsOpen));
+    listenForOutsideClicks(listening, setListening, menuRef, setIsOpen)
+  );
 
   return (
     <div style={{ position: "relative" }}>
@@ -642,12 +603,78 @@ const Dropdown = ({ list, options }) => {
   );
 };
 
-const SidebarComponent = (props) => (
+const getImage = (url, title = "") => {
+  return (
+    <a
+      href={`https://lh3.googleusercontent.com/d/${url}`}
+      data-fslightbox={title}
+    >
+      <img
+        src={`https://lh3.googleusercontent.com/d/${url}=w300`}
+        alt={title}
+        className="thumb"
+      />
+    </a>
+  );
+};
+
+export const getInfoWindowContent = (item) => {
+  const mappedItem = {
+    name: item[0],
+    address: item[1],
+    text: item[3],
+    gallery: getGallery(item),
+  };
+  const _content = (
+    <div className="infobox">
+      <h2>{mappedItem.name}</h2>
+      <h3>{mappedItem.address}</h3>
+      {mappedItem.text && (
+        <div
+          className="html"
+          dangerouslySetInnerHTML={{ __html: mappedItem.text }}
+        />
+      )}
+      {mappedItem.gallery.length > 0 && (
+        <div className="gallery">
+          {getImage(mappedItem.gallery[0], mappedItem.name)}
+          {mappedItem.gallery[1] &&
+            getImage(mappedItem.gallery[1], mappedItem.name)}
+          {mappedItem.gallery[2] &&
+            getImage(mappedItem.gallery[2], mappedItem.name)}
+          {mappedItem.gallery[3] &&
+            getImage(mappedItem.gallery[3], mappedItem.name)}
+        </div>
+      )}
+    </div>
+  );
+  return {
+    content: renderToString(_content),
+    pane: "floatPane",
+    closeBoxMargin: "20px",
+    pixelOffset: { width: -200, height: 0 },
+    disableAutoPan: false,
+    enableEventPropagation: false,
+  };
+};
+
+export const SidebarComponent = ({
+  allowGPS,
+  gpsLoading,
+  handleMenuOpen,
+  handleToggleOpen,
+  list,
+  lists,
+  markerOpen,
+  menuOpened,
+  navItems,
+  toggleMyGPS,
+}) => (
   <div className="w-nav nav-bar">
     <div
       className="w-nav-button menu-button"
       style={styles.menubutton}
-      onClick={() => props.scope.handleMenuOpen()}
+      onClick={handleMenuOpen}
     >
       <div className="w-icon-nav-menu" />
     </div>
@@ -659,15 +686,12 @@ const SidebarComponent = (props) => (
             Otevřené dvorky a domy
           </Link>
         </h1>
-        <Dropdown
-          list={props.scope.props.list}
-          options={props.scope.props.lists}
-        />
+        <Dropdown list={list} options={lists} />
       </span>
     </span>
     <nav
       className={
-        props.scope.state.menuOpened
+        menuOpened
           ? "w-nav-menu w-clearfix nav-menu opened"
           : "w-nav-menu w-clearfix nav-menu"
       }
@@ -677,22 +701,18 @@ const SidebarComponent = (props) => (
         {navigator.geolocation && (
           <li
             className={
-              props.scope.state.allowGPS
-                ? "w-nav-link nav-link octive"
-                : "w-nav-link nav-link "
+              allowGPS ? "w-nav-link nav-link octive" : "w-nav-link nav-link "
             }
-            onClick={props.scope.toggleMyGPS}
-            style={props.scope.state.allowGPS ? styles.active : null}
+            onClick={() => toggleMyGPS(allowGPS)}
+            style={allowGPS ? styles.active : null}
             key="gps"
           >
-            {props.scope.state.allowGPS
-              ? menuIconGpsOn(props.scope.state.gpsLoading)
-              : menuIconGpsOff()}
+            {allowGPS ? menuIconGpsOn(gpsLoading) : menuIconGpsOff()}
             Moje poloha
           </li>
         )}
 
-        {!props.scope.state.navItems.length && (
+        {!navItems.length && (
           <SunspotLoader
             className={"w-nav-link nav-link"}
             gradientColors={["#00a4d5", "transparent"]}
@@ -701,16 +721,16 @@ const SidebarComponent = (props) => (
             mobileSize={"40px"}
           />
         )}
-        {props.scope.state.navItems.map((item, i) => (
+        {navItems.map((item, i) => (
           <li
             key={i}
             className={
-              props.scope.state.markerOpen === i
+              markerOpen === i
                 ? "active w-nav-link nav-link"
                 : "w-nav-link nav-link"
             }
-            onClick={() => props.scope.handleToggleOpen(i, item)}
-            style={props.scope.state.markerOpen === i ? styles.active : null}
+            onClick={() => handleToggleOpen(i, item)}
+            style={markerOpen === i ? styles.active : null}
           >
             {item.title}
           </li>
@@ -720,278 +740,3 @@ const SidebarComponent = (props) => (
     <div className="w-nav-overlay" />
   </div>
 );
-
-const MapComponent = withScriptjs(
-  withGoogleMap((props) => (
-    <GoogleMap
-      defaultOptions={{
-        styles: props.scope.state.dark ? mapStylesDark : mapStyles,
-        center: defaultMapCenter,
-        zoom: 18,
-        mapTypeControl: false,
-        panControl: false,
-        streetViewControl: true,
-        scrollwheel: true,
-        zoomControl: true,
-        fullscreenControl: false,
-      }}
-      onClick={() => props.scope.handleToggleOpen(null)}
-      ref={(map) => {
-        props.scope._map = map;
-      }}
-    >
-      {props.scope.state.allowGPS && props.scope.state.myGPS && (
-        <Marker
-          position={props.scope.state.myGPS}
-          onClick={() => {
-            props.scope.panMap(props.scope.state.myGPS);
-            props.scope.setState({ markerOpen: null });
-          }}
-          icon={iconGPS}
-          key={"myGPS"}
-        />
-      )}
-      {props.scope.state.markers.map((item, i) => {
-        return (
-          <Marker
-            position={item.position}
-            icon={
-              props.scope.state.markerOpen === i
-                ? iconActive(props.scope.state.dark)
-                : icon
-            }
-            key={i}
-            onClick={() => props.scope.handleToggleOpen(i)}
-          />
-        );
-      })}
-      {props.scope.state.markerOpen > -1 &&
-        props.scope.state.markers[props.scope.state.markerOpen] && (
-          <InfoWindow
-            options={{
-              pixelOffset: { width: 0, height: -23 },
-              closeBoxMargin: 20,
-              pane: "floatPane",
-            }}
-            position={
-              props.scope.state.markers[props.scope.state.markerOpen].position
-            }
-            onCloseClick={() => props.scope.handleToggleOpen(null)}
-          >
-            <div
-              className="infoBox"
-              dangerouslySetInnerHTML={{
-                __html:
-                  props.scope.state.markers[props.scope.state.markerOpen][
-                    "infoWindow"
-                  ]["content"],
-              }}
-            />
-          </InfoWindow>
-        )}
-    </GoogleMap>
-  ))
-);
-export const styles = {
-  active: {
-    backgroundColor: defaultColor,
-    color: "white",
-  },
-  menubutton: {
-    color: defaultColor,
-  },
-};
-export default class Mapa extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gpsLoading: false,
-      markers: [],
-      dark: this.getPreferredColorScheme(),
-      navItems: [],
-      markerOpen: null,
-      menuOpened: false,
-      myGPS: false,
-      allowGPS: false,
-      firstTrack: false,
-      FStoggler: false,
-      FSslide: 1,
-    };
-  }
-
-  getPreferredColorScheme = () => {
-    if (this._map)
-      this._map.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.setOptions(
-        {
-          styles: !this.state.dark ? mapStylesDark : mapStyles,
-        }
-      );
-
-    if (window.matchMedia) {
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return false;
-  };
-
-  updateColorScheme = () => {
-    this.setState({ dark: this.getPreferredColorScheme() }, () => {});
-  };
-
-  zoomExtends = () => {
-    if (!window.google) return;
-    const _bounds = new window.google.maps.LatLngBounds();
-    this.state.markers.map((item, i) => {
-      _bounds.extend(item.position);
-      return true;
-    });
-    this._map && this._map.fitBounds(_bounds);
-    return;
-  };
-
-  handleToggleOpen = (i, item) => {
-    this.closeMenu();
-    this.setState({ markerOpen: this.state.markerOpen === i ? null : i }, () =>
-      setTimeout(() => window.refreshFsLightbox(), 400)
-    );
-    var activeMenu = document.querySelector("nav li.active");
-    if (item) window.gtag("event", "page_view", { page_title: item.title });
-    return activeMenu !== null ? activeMenu.scrollIntoView() : "";
-  };
-
-  handleMenuOpen = () => {
-    return this.setState({ menuOpened: !this.state.menuOpened });
-  };
-
-  closeMenu = () => {
-    return this.setState({ menuOpened: false });
-  };
-
-  panMap = (latlng) => {
-    return this._map.panTo(latlng);
-  };
-
-  getMyGPS = () => {
-    this.setState({ gpsLoading: true });
-    var GPSoptions = {
-      enableHighAccuracy: false,
-      timeout: 5000,
-      maximumAge: 0,
-    };
-    var geoSuccess = (position) => {
-      var thisPos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      if (this.state.firstTrack) {
-        this.setState({ gpsLoading: false });
-        this.panMap(thisPos);
-        this.setState({ markerOpen: null });
-        this.closeMenu();
-      }
-      return this.setState({ myGPS: thisPos, firstTrack: false });
-    };
-    var geoError = (error) => {
-      console.log("Error occurred. Error code: " + error.code);
-      // error.code can be:
-      //   0: unknown error
-      //   1: permission denied
-      //   2: position unavailable (error response from location provider)
-      //   3: timed out
-    };
-    var process;
-    if (this.state.allowGPS) {
-      this.setState({ firstTrack: true }, () => {
-        process = navigator.geolocation.watchPosition(
-          geoSuccess,
-          geoError,
-          GPSoptions
-        );
-      });
-    } else {
-      navigator.geolocation.clearWatch(process);
-    }
-    return;
-  };
-
-  toggleMyGPS = () => {
-    this.setState(
-      { allowGPS: !this.state.allowGPS, firstTrack: true },
-      this.getMyGPS
-    );
-  };
-
-  UNSAFE_componentWillReceiveProps = (nextprops) => {
-    var _tmpMarkers = [];
-    var _tmpNavItems = [];
-    nextprops.entries.map((item) => {
-      var _mappedMarker = {
-        position: getLanLng(item[2]),
-        infoWindow: getInfoWindowContent(item, this),
-      };
-      var _mappedNavItem = {
-        title: item[0],
-      };
-      _tmpMarkers.push(_mappedMarker);
-      _tmpNavItems.push(_mappedNavItem);
-      return null;
-    });
-    return this.setState(
-      { markers: _tmpMarkers, navItems: _tmpNavItems },
-      this.zoomExtends
-    );
-  };
-
-  UNSAFE_componentWillMount = (props) => {
-    if (window.matchMedia) {
-      var colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      colorSchemeQuery.addEventListener("change", () =>
-        this.setState({ dark: this.getPreferredColorScheme() })
-      );
-    }
-  };
-
-  render() {
-    return (
-      <>
-        <SidebarComponent scope={this} />
-        <div className="content" style={{ height: "100vh", padding: 0 }}>
-          <MapComponent
-            googleMapURL={
-              "https://maps.googleapis.com/maps/api/js?key=" +
-              window.apiKey +
-              "&v=3.exp&libraries=geometry,drawing,places"
-            }
-            loadingElement={
-              <div style={{ height: `100%` }}>
-                <SunspotLoader
-                  gradientColors={["#00a4d5", "transparent"]}
-                  style={{ width: "100%" }}
-                  shadowColor={"#3730A3"}
-                  desktopSize={"228px"}
-                  mobileSize={"100px"}
-                />
-              </div>
-            }
-            containerElement={
-              <div
-                style={{
-                  height: `100%`,
-                  borderBottomColor: defaultColor,
-                  borderBottomStyle: "solid",
-                  borderBottom: "none",
-                  boxSizing: "border-box",
-                }}
-              />
-            }
-            mapElement={<div style={{ height: `100%` }} />}
-            scope={this}
-          />
-        </div>
-      </>
-    );
-  }
-}

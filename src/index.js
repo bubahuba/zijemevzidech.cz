@@ -12,18 +12,13 @@ import { Layout } from "./components/Layout";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <Routes>
-      <Route path="/odvodo/:list?" element={<Odvodo />} />
-      <Route
-        path="/:category?/:entry?"
-        element={
-          <StrictMode>
-            <Layout />
-          </StrictMode>
-        }
-      />
-    </Routes>
-  </Router>
+  <StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/odvodo/:list?" element={<Odvodo />} />
+        <Route path="/:category?/:entry?" element={<Layout />} />
+      </Routes>
+    </Router>
+  </StrictMode>
 );
 serviceWorker.register();

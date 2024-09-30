@@ -42,7 +42,7 @@ export const Entry = ({ data }) => {
                 key={i}
             >
                 {({ ref, open }) => (
-                    <img ref={ref} onClick={open} src={item.small} alt={item.title} />
+                    <img ref={ref} onClick={open} width={300} height={300} src={item.small} alt={item.title} />
 
                 )}
             </Item>)}</div></Gallery>}

@@ -3,7 +3,7 @@ import { Sidebar } from "./Sidebar";
 import { useParams } from "react-router-dom";
 import { Entry } from "./Entry";
 import { Category } from "./Category";
-import { defaultColor } from "./Mapa";
+import { defaultColor } from "./mapAssets";
 import { NotFound } from "./NotFound";
 import { SunspotLoader } from "react-awesome-loaders";
 

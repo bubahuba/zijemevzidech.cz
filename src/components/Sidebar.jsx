@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { styles, defaultColor } from "./Mapa";
+import { styles, defaultColor } from "./mapAssets";
 import { Logo } from "./Logo";
 import { Link, useParams } from "react-router-dom";
 import { SunspotLoader } from "react-awesome-loaders";
