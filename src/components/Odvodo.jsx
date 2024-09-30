@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router";
-import { Map } from "./components/Map";
-import { defaultColor } from "./components/mapAssets";
+import { useParams } from "react-router";
+import { Map } from "./Map";
+import { defaultColor } from "./mapAssets";
+import { siteBase } from "./Layout";
 
- const Odvodo = ({ router }) => {
+export const Odvodo = () => {
   const [entries, setEntries] = useState([]);
   const [lists, setLists] = useState([]);
   const [currentList, setCurrentList] = useState(undefined);
+  const { list } = useParams()
 
   useEffect(() => {
-    const { list } = router.params;
     if (!lists.length) {
       const API_lists =
         "https://sheets.googleapis.com/v4/spreadsheets/1ssjYdrST5QnaIeFizr-D2P3lHDgXHYpENLi_LMw4Amw?key=AIzaSyATJtmaYHWXJ3zXaYCexj4mfn_sjVIuJtk";
@@ -35,13 +36,15 @@ import { defaultColor } from "./components/mapAssets";
       fetch(API_entries)
         .then((response) => response.json())
         .then((data) => {
-          setEntries( data.values );
+          setEntries(data.values);
         })
         .catch(function (ex) {
           console.log("parsing failed", ex);
         });
+
+      if (window.gtag) window.gtag("event", "page_view", { page_title: list, page_location: siteBase + encodeURI(list) });
     }
-  }, [lists, router]);
+  }, [lists, list]);
 
   return (
     <div className="App" style={{ backgroundColor: defaultColor }}>
@@ -54,15 +57,3 @@ import { defaultColor } from "./components/mapAssets";
   );
 };
 
-export function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const params = useParams();
-
-    return <Component {...props} router={{ location, navigate, params }} />;
-  }
-
-  return ComponentWithRouterProp;
-}
-export default withRouter(Odvodo);

@@ -32,7 +32,7 @@ export const ContactForm = () => {
                 <input type="hidden" name="ACT" value="33" />
                 <input type="hidden" name="parameters" value="VY3HfUw/5LiQmHU6oglnQXobNiPZ5K1edAiGyI1TVdpHx3EUYSl/lusSaW5TS/Osbfku5v8oc2hcWUk7KZrETbyHEcw3iZIGHAYzERVQUWb8Dh2uALMl2NRNQMcwTw//cMB4d3g6X58NGmdOHQyklw==" />
                 <input type="hidden" name="site_id" value="1" />
-                <input type="hidden" name="url" value={siteBase + pathname} />
+                <input type="hidden" name="url" value={siteBase + pathname.slice(1)} />
             </div>
             {!Boolean(mailSent) && (<div className={isSubmitting ? 'submiting' : undefined}>
                 <div className="form-group">

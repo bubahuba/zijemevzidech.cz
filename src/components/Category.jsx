@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import { siteBase } from "./Layout";
 
 export const Category = ({ data }) => {
     const { category } = useParams()
@@ -9,6 +10,7 @@ export const Category = ({ data }) => {
         month: "long",
         day: "numeric",
     };
+    if (window.gtag) window.gtag("event", "page_view", { page_title: category, page_location: siteBase + (category ? category + '/' : '') });
 
     return (
         <div className="category">{data.map((entry, i) => {

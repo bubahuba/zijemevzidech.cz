@@ -2,10 +2,13 @@ import React from "react";
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import { FileIcon } from "./FileIcon";
 import { ContactForm } from "./ContactForm";
+import { useParams } from "react-router-dom";
+import { siteBase } from "./Layout";
 
 
 
 export const Entry = ({ data }) => {
+    const { category, entry } = useParams()
     if (!data[0]) return null;
     const { title, intro, galerie, fulltext, files, date } = data[0];
     const dateOptions = {
@@ -15,6 +18,8 @@ export const Entry = ({ data }) => {
         day: "numeric",
     };
     const itemDate = new Date(Number(date) * 1000).toLocaleDateString("cs-CZ", dateOptions)
+
+    if (window.gtag) window.gtag("event", "page_view", { page_title: title, page_location: siteBase + (category ? category + '/' + entry : '') });
 
     return (
         <>

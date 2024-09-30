@@ -9,7 +9,7 @@ import { SunspotLoader } from "react-awesome-loaders";
 
 export const apiBase = 'https://zijemevzidech.cz/api/json/';
 export const eeBase = 'https://zijemevzidech.cz/api/index.php';
-export const siteBase = 'https://zijemevzidech.cz';
+export const siteBase = 'https://zijemevzidech.cz/';
 
 export const Layout = () => {
     const { category, entry } = useParams()
@@ -56,6 +56,7 @@ export const Layout = () => {
             }
         }
         fetchData()
+
     }, [category, entry])
 
     if (notFound) return (

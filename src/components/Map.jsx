@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { SidebarComponent, mapStylesDark, mapStyles, getInfoWindowContent, getLanLng, defaultMapCenter, styles, iconGPS, iconActive, icon } from './mapAssets';
 import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { siteBase } from './Layout';
 
-export const Map = ({ entries, lists, list, router }) => {
+export const Map = ({ entries, lists, list }) => {
     const getPreferredColorScheme = () => {
 
         if (window.matchMedia) {
@@ -14,6 +15,7 @@ export const Map = ({ entries, lists, list, router }) => {
         }
         return false;
     };
+
     const [gpsLoading, setGpsLoading] = useState(false);
     const [markers, setMarkers] = useState([]);
     const [dark, setDark] = useState(getPreferredColorScheme())
@@ -22,9 +24,6 @@ export const Map = ({ entries, lists, list, router }) => {
     const [menuOpened, setMenuOpened] = useState(false)
     const [myGPS, setMyGPS] = useState(false)
     const [allowGPS, setAllowGPS] = useState(false)
-    const [firstTrack, setFirstTrack] = useState(false)
-    const [FStoggler, setFStoggler] = useState(false)
-    const [FSslide, setFSslide] = useState(1)
     const [_map, setMap] = useState(null)
 
     const handleToggleOpen = (i, item) => {
@@ -32,7 +31,7 @@ export const Map = ({ entries, lists, list, router }) => {
         setMarkerOpen(markerOpen === i ? null : i)
         setTimeout(() => window.refreshFsLightbox(), 400)
         var activeMenu = document.querySelector("nav li.active");
-        if (item) window.gtag("event", "page_view", { page_title: item.title });
+        if (item) window.gtag("event", "page_view", { page_title: item.title, page_location: siteBase + encodeURI(list) });
         return activeMenu !== null ? activeMenu.scrollIntoView() : "";
     };
 
@@ -45,7 +44,7 @@ export const Map = ({ entries, lists, list, router }) => {
     };
 
     const panMap = (latlng) => {
-        if(!_map) return;
+        if (!_map) return;
         return _map.panTo(latlng);
     };
 
@@ -67,7 +66,6 @@ export const Map = ({ entries, lists, list, router }) => {
             setMarkerOpen(null)
             closeMenu();
             setMyGPS(thisPos)
-            setFirstTrack(false)
         };
         var geoError = (error) => {
             console.log("Error occurred. Error code: " + error.code);
@@ -79,7 +77,6 @@ export const Map = ({ entries, lists, list, router }) => {
         };
         var process;
         if (gpsAllow) {
-            setFirstTrack(true)
             process = navigator.geolocation.watchPosition(
                 geoSuccess,
                 geoError,
@@ -94,7 +91,6 @@ export const Map = ({ entries, lists, list, router }) => {
 
     const toggleMyGPS = (currentGPS) => {
         setAllowGPS(!currentGPS)
-        setFirstTrack(!currentGPS)
         getMyGPS(!currentGPS)
     };
 
