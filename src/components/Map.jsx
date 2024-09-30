@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SidebarComponent, mapStylesDark, mapStyles, getInfoWindowContent, getLanLng, defaultMapCenter, styles, iconGPS, iconActive, icon } from './mapAssets';
 import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from '@react-google-maps/api';
 
@@ -14,7 +14,6 @@ export const Map = ({ entries, lists, list, router }) => {
         }
         return false;
     };
-
     const [gpsLoading, setGpsLoading] = useState(false);
     const [markers, setMarkers] = useState([]);
     const [dark, setDark] = useState(getPreferredColorScheme())
@@ -109,12 +108,9 @@ export const Map = ({ entries, lists, list, router }) => {
     })
 
     useEffect(() => {
-        if (_map)
-            _map.setOptions(
-                {
-                    styles: !dark ? mapStylesDark : mapStyles,
-                }
-            );
+        if (_map) {
+            _map.styles = !dark ? mapStylesDark : mapStyles
+        }
     }, [_map, dark])
 
     useEffect(() => {

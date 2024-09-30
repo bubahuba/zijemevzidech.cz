@@ -34,6 +34,9 @@
   content: "\e602";
 }
 
+.gm-ui-hover-effect>span{
+  background-color: black;
+}
 .pswp img{
   object-fit: contain;
 }
@@ -536,7 +539,9 @@
     background-color: #222;
     color: #00A4D5;
   }
-
+  .gm-ui-hover-effect>span{
+    background-color: white;
+  }
   .App .content, .App .nav-bar nav ul, .App .dropdown { 
     box-shadow: 0 5px 20px #00A4D588;
   }
