@@ -27,6 +27,8 @@ export const Entry = ({ data }) => {
             <Helmet>
                 <title>{title}{titleBase}</title>
                 {intro && <meta name="description" content={intro} />}
+                {galerie.length && galerie.map((item, i) =>
+                    <meta property="og:image" content={item.large} />)}
             </Helmet>
             <h1>{title} <span className="date">{itemDate}</span></h1>
             <p>{intro}</p>
