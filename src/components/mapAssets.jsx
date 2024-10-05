@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { SunspotLoader } from "react-awesome-loaders";
+import { SunspotLoader } from "../node_modules/react-awesome-loaders";
 import { Logo } from "./Logo";
 import { renderToString } from "react-dom/server";
 

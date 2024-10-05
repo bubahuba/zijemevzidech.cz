@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styles, defaultColor } from "./mapAssets";
 import { Logo } from "./Logo";
 import { Link, useParams } from "react-router-dom";
-import { SunspotLoader } from "react-awesome-loaders";
+import { SunspotLoader } from "../node_modules/react-awesome-loaders";
 
 export const Sidebar = ({ navItems, currentItem }) => {
   const [menuOpened, setMenuOpened] = useState(false);

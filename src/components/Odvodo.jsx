@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Map } from "./Map";
 import { defaultColor } from "./mapAssets";
-import { siteBase } from "./Layout";
+import { siteBase, titleBase } from "./Layout";
+import { Helmet } from "react-helmet";
 
 export const Odvodo = () => {
   const [entries, setEntries] = useState([]);
   const [lists, setLists] = useState([]);
   const [currentList, setCurrentList] = useState(undefined);
   const { list } = useParams()
+  const odvodoTitle = 'Otevřené dvorky a domy'
 
   useEffect(() => {
     if (!lists.length) {
@@ -37,6 +39,7 @@ export const Odvodo = () => {
         .then((response) => response.json())
         .then((data) => {
           setEntries(data.values);
+          setCurrentList(renderList);
         })
         .catch(function (ex) {
           console.log("parsing failed", ex);
@@ -47,13 +50,19 @@ export const Odvodo = () => {
   }, [lists, list]);
 
   return (
-    <div className="App" style={{ backgroundColor: defaultColor }}>
-      <Map
-        entries={entries}
-        list={currentList}
-        lists={lists}
-      />
-    </div>
+    <>
+    <Helmet>
+      <title>{currentList ? decodeURIComponent(currentList) + ' | ' + odvodoTitle : odvodoTitle}{titleBase}</title>
+    </Helmet>
+      <div className="App" style={{ backgroundColor: defaultColor }}>
+
+        <Map
+          entries={entries}
+          list={currentList}
+          lists={lists}
+        />
+      </div>
+    </>
   );
 };
 

@@ -3,7 +3,8 @@ import { Gallery, Item } from 'react-photoswipe-gallery';
 import { FileIcon } from "./FileIcon";
 import { ContactForm } from "./ContactForm";
 import { useParams } from "react-router-dom";
-import { siteBase } from "./Layout";
+import { siteBase, titleBase } from "./Layout";
+import { Helmet } from 'react-helmet';
 
 
 
@@ -23,6 +24,10 @@ export const Entry = ({ data }) => {
 
     return (
         <>
+            <Helmet>
+                <title>{title}{titleBase}</title>
+                {intro && <meta name="description" content={intro} />}
+            </Helmet>
             <h1>{title} <span className="date">{itemDate}</span></h1>
             <p>{intro}</p>
             <div dangerouslySetInnerHTML={{ __html: fulltext }}></div>
