@@ -52,7 +52,7 @@ export const Odvodo = () => {
   return (
     <>
     <Helmet>
-      <title>{currentList ? decodeURIComponent(currentList) + ' | ' + odvodoTitle : odvodoTitle}{titleBase}</title>
+      <title>{currentList ? decodeURIComponent(currentList) + ' ✡︎ ' + odvodoTitle : odvodoTitle}{titleBase}</title>
     </Helmet>
       <div className="App" style={{ backgroundColor: defaultColor }}>
 

@@ -10,7 +10,7 @@ import { SunspotLoader } from "../node_modules/react-awesome-loaders";
 export const apiBase = 'https://zijemevzidech.cz/api/json/';
 export const eeBase = 'https://zijemevzidech.cz/api/index.php';
 export const siteBase = 'https://zijemevzidech.cz/';
-export const titleBase = ' | Žijeme v Židech'
+export const titleBase = ' ✡︎ Žijeme v Židech'
 
 export const Layout = () => {
     const { category, entry } = useParams()
