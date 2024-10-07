@@ -53,6 +53,7 @@ export const Sidebar = ({ navItems, currentItem }) => {
             navItems.map((item, i) => (
               <Link to={'/' + item.slug}
                 key={i}
+                state={{title: item.title}}
                 className={
                   currentItem === item.slug
                     ? "active w-nav-link nav-link"
