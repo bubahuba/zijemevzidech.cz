@@ -17,7 +17,7 @@ export const Category = ({ data }) => {
     return (
         <>
             <Helmet>
-                {category && <title>{state.title}{titleBase}</title>}
+                {category && <title>{state ? state.title : ''}{titleBase}</title>}
                 <meta property="og:image" content="/images/og-image.png" />
             </Helmet>
             <div className="category">{data.map((entry, i) => {
