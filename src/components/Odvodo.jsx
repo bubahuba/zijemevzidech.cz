@@ -2,65 +2,76 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Map } from "./Map";
 import { defaultColor } from "./mapAssets";
-import { siteBase, titleBase } from "./Layout";
+import { apiBase, siteBase, titleBase } from "./Layout";
 import { Helmet } from "react-helmet";
+import { ShowAll } from "./ShowAll";
 
 export const Odvodo = () => {
   const [entries, setEntries] = useState([]);
   const [lists, setLists] = useState([]);
   const [currentList, setCurrentList] = useState(undefined);
-  const { list } = useParams()
+  const [globalTime, setGlobalTime] = useState(undefined);
+  const { list, all } = useParams()
   const odvodoTitle = 'Otevřené dvorky a domy'
 
   useEffect(() => {
-    if (!lists.length) {
-      const API_lists =
-        "https://sheets.googleapis.com/v4/spreadsheets/1ssjYdrST5QnaIeFizr-D2P3lHDgXHYpENLi_LMw4Amw?key=AIzaSyATJtmaYHWXJ3zXaYCexj4mfn_sjVIuJtk";
+    if (!lists[0]) {
+      const API_lists = apiBase + 'entries/c/odvodo';
+      const fetchLists = async () => {
+        await fetch(API_lists)
+          .then((response) => response.json())
+          .then((data) => {
+            const _lists = [];
+            data.map(({ title, slug }) => _lists.push({ title, slug }));
+            setLists(_lists);
+          })
+          .catch(function (ex) {
+            console.log("parsing failed", ex);
+          })
+      }
+      fetchLists()
 
-      fetch(API_lists)
-        .then((response) => response.json())
-        .then((data) => {
-          const _lists = [];
-          data.sheets.map(({ properties }) => _lists.push(properties.title));
-          setLists(_lists);
-          setCurrentList(list ? list : _lists[0]);
-        })
-        .catch(function (ex) {
-          console.log("parsing failed", ex);
-        });
-    } else {
-      const renderList = list ? list : lists[0];
-      setEntries([]);
-      const API_entries =
-        "https://sheets.googleapis.com/v4/spreadsheets/1ssjYdrST5QnaIeFizr-D2P3lHDgXHYpENLi_LMw4Amw/values/" +
-        encodeURIComponent(renderList) +
-        "!A2:Z1000?key=AIzaSyATJtmaYHWXJ3zXaYCexj4mfn_sjVIuJtk";
-      fetch(API_entries)
-        .then((response) => response.json())
-        .then((data) => {
-          setEntries(data.values);
-          setCurrentList(renderList);
-        })
-        .catch(function (ex) {
-          console.log("parsing failed", ex);
-        });
+    } else if ((!list && currentList) || (currentList && list === currentList.slug)) {
+      const API_entries = apiBase + 'entry/' + currentList.slug;
+      const fetchEntries = async () => {
+        await fetch(API_entries)
+          .then((response) => response.json())
+          .then((data) => {
+            setEntries(data[0].related);
+            setGlobalTime(data[0].global_time);
+          })
+          .catch(function (ex) {
+            console.log("parsing failed", ex);
+          });
+      }
+      fetchEntries()
 
-      if (window.gtag) window.gtag("event", "page_view", { page_title: list, page_location: siteBase + encodeURI(list) });
+      if (window.gtag) window.gtag("event", "page_view", { page_title: currentList.title, page_location: siteBase + currentList.slug });
     }
-  }, [lists, list]);
+  }, [lists, currentList, list]);
+
+  useEffect(() => {
+    setEntries([])
+    if (list && lists[0]) {
+      setCurrentList(lists.find((item) => item.slug === list))
+    } else {
+      setCurrentList(lists[0])
+    }
+  }, [list, lists])
 
   return (
     <>
-    <Helmet>
-      <title>{currentList ? decodeURIComponent(currentList) + ' ✡︎ ' + odvodoTitle : odvodoTitle}{titleBase}</title>
-    </Helmet>
+      <Helmet>
+        <title>{currentList ? currentList.title + ' ✡︎ ' + odvodoTitle : odvodoTitle}{titleBase}</title>
+      </Helmet>
       <div className="App" style={{ backgroundColor: defaultColor }}>
-
-        <Map
-          entries={entries}
-          list={currentList}
-          lists={lists}
-        />
+        {all === 'all' && <ShowAll entries={entries} list={currentList} globalTime={globalTime} />}
+        {!all &&
+          <Map
+            entries={entries}
+            list={currentList}
+            lists={lists}
+          />}
       </div>
     </>
   );

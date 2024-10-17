@@ -3,7 +3,6 @@ import { Sidebar } from "./Sidebar";
 import { useParams } from "react-router-dom";
 import { Entry } from "./Entry";
 import { Category } from "./Category";
-import { defaultColor } from "./mapAssets";
 import { NotFound } from "./NotFound";
 import { SunspotLoader } from "../node_modules/react-awesome-loaders";
 
@@ -41,7 +40,7 @@ export const Layout = () => {
         setData([])
         setNotFound(false)
         const fetchData = async () => {
-            const cat = category ? category : 'about';
+            const cat = category ? category : 'aktivity';
             const url = entry ? apiBase + 'entry/' + entry : apiBase + 'entries/c/' + cat;
             try {
                 const response = await fetch(url);
@@ -61,17 +60,17 @@ export const Layout = () => {
     }, [category, entry])
 
     if (notFound) return (
-        <div className="App" style={{ backgroundColor: defaultColor }}>
-            <Sidebar navItems={navItems} currentItem={category ? category : 'about'} />
+        <div className="App">
+            <Sidebar navItems={navItems}/>
             <NotFound />
         </div>
     )
 
     return (
-        <div className="App" style={{ backgroundColor: defaultColor }}>
-            <Sidebar navItems={navItems} currentItem={category ? category : 'about'} />
+        <div className="App">
+            <Sidebar navItems={navItems} currentItem={category ? category : 'aktivity'} />
 
-            <div className="main content" style={{ height: 'auto' }}>{!data.length && <SunspotLoader
+            <div className="main content">{!data.length && <SunspotLoader
                 gradientColors={["#00a4d5", "transparent"]}
                 style={{width: "100%"}}
                  shadowColor={"#3730A3"}

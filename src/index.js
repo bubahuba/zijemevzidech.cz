@@ -15,7 +15,7 @@ root.render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route path="/odvodo/:list?" element={<Odvodo />} />
+        <Route path="/map/:list?/:all?" element={<Odvodo />} />
         <Route path="/:category?/:entry?" element={<Layout />} />
       </Routes>
     </Router>

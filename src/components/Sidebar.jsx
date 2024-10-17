@@ -36,8 +36,8 @@ export const Sidebar = ({ navItems, currentItem }) => {
         role="navigation"
       >
         <ul>
-          <Link to={'/odvodo'}
-            key='odvodo'
+          <Link to={'/map'}
+            key='map'
             className={"w-nav-link nav-link"}
           >
             Otevřené DVOrky a DOmy

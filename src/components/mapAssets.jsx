@@ -466,7 +466,7 @@ export const icon = {
   fillOpacity: 1,
   anchor: { x: 15, y: 34 },
   strokeWeight: 4,
-  scale: 1,
+  scale: 1
 };
 
 export const menuIconGpsOn = (active) => {
@@ -528,13 +528,8 @@ export const getLanLng = (latlng) => {
   };
 };
 
-export const getGallery = (item) => {
-  const _return = [];
-  item[4] && _return.push(item[4]);
-  item[5] && _return.push(item[5]);
-  item[6] && _return.push(item[6]);
-  item[7] && _return.push(item[7]);
-  return _return;
+export const getGallery = (galerie) => {
+  return galerie;
 };
 
 const listenForOutsideClicks = (
@@ -558,22 +553,34 @@ const listenForOutsideClicks = (
 };
 
 export const Dropdown = ({ list, options }) => {
+
   const menuRef = useRef(null);
   const [listening, setListening] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() =>
     listenForOutsideClicks(listening, setListening, menuRef, setIsOpen)
   );
 
+  if (!list) return <div>
+    <p>
+      <SunspotLoader
+        className={"w-nav-link nav-link"}
+        gradientColors={["#00a4d5", "transparent"]}
+        shadowColor={"#00000040"}
+        desktopSize={"40px"}
+        mobileSize={"40px"}
+      />
+
+    </p>
+  </div>;
   return (
     <div style={{ position: "relative" }}>
       <p
         style={{ visibility: isOpen ? "hidden" : "visible" }}
         onClick={() => setTimeout(() => setIsOpen(true), 200)}
       >
-        {list}
+        {list.title}
       </p>
       <ul
         style={{
@@ -584,16 +591,16 @@ export const Dropdown = ({ list, options }) => {
       >
         {options.map((listOption) => {
           return (
-            <li key={listOption}>
+            <li key={listOption.slug}>
               <Link
-                to={"/odvodo/" + listOption}
-                className={list === listOption ? "active" : ""}
+                to={"/map/" + listOption.slug}
+                className={list.slug === listOption.slug ? "active" : ""}
                 style={{
-                  color: list === listOption ? defaultColor : "inherit",
+                  color: list.slug === listOption.slug ? defaultColor : "inherit",
                 }}
                 onClick={() => setIsOpen(false)}
               >
-                {listOption}
+                {listOption.title}
               </Link>
             </li>
           );
@@ -603,14 +610,14 @@ export const Dropdown = ({ list, options }) => {
   );
 };
 
-const getImage = (url, title = "") => {
+const getImage = (item, title = "") => {
   return (
     <a
-      href={`https://lh3.googleusercontent.com/d/${url}`}
+      href={item.large}
       data-fslightbox={title}
     >
       <img
-        src={`https://lh3.googleusercontent.com/d/${url}=w300`}
+        src={item.small}
         alt={title}
         className="thumb"
       />
@@ -620,11 +627,12 @@ const getImage = (url, title = "") => {
 
 export const getInfoWindowContent = (item) => {
   const mappedItem = {
-    name: item[0],
-    address: item[1],
-    text: item[3],
-    gallery: getGallery(item),
+    name: item.title,
+    address: item.intro,
+    text: item.fulltext,
+    gallery: getGallery(item.galerie),
   };
+
   const _content = (
     <div className="infobox">
       <h2>{mappedItem.name}</h2>
@@ -635,15 +643,9 @@ export const getInfoWindowContent = (item) => {
           dangerouslySetInnerHTML={{ __html: mappedItem.text }}
         />
       )}
-      {mappedItem.gallery.length > 0 && (
+      {mappedItem.gallery[0] && (
         <div className="gallery">
-          {getImage(mappedItem.gallery[0], mappedItem.name)}
-          {mappedItem.gallery[1] &&
-            getImage(mappedItem.gallery[1], mappedItem.name)}
-          {mappedItem.gallery[2] &&
-            getImage(mappedItem.gallery[2], mappedItem.name)}
-          {mappedItem.gallery[3] &&
-            getImage(mappedItem.gallery[3], mappedItem.name)}
+          {mappedItem.gallery.map((item, i) => getImage(item, mappedItem.name))}
         </div>
       )}
     </div>
@@ -682,8 +684,8 @@ export const SidebarComponent = ({
       <Logo currentColor={defaultColor} height={60} />
       <span>
         <h1>
-          <Link to="/odvodo" style={{ textDecoration: "none" }}>
-            Otevřené dvorky a domy
+          <Link to="/map" style={{ textDecoration: "none", fontWeight: 300 }}>
+            <b>O</b>tevřené <b>Dvo</b>rky a <b>Do</b>my
           </Link>
         </h1>
         <Dropdown list={list} options={lists} />
@@ -713,13 +715,15 @@ export const SidebarComponent = ({
         )}
 
         {!navItems.length && (
-          <SunspotLoader
-            className={"w-nav-link nav-link"}
-            gradientColors={["#00a4d5", "transparent"]}
-            shadowColor={"#00000040"}
-            desktopSize={"40px"}
-            mobileSize={"40px"}
-          />
+          <li className="w-nav-link nav-link">
+            <SunspotLoader
+              className={"w-nav-link nav-link"}
+              gradientColors={["#00a4d5", "transparent"]}
+              shadowColor={"#00000040"}
+              desktopSize={"40px"}
+              mobileSize={"40px"}
+            />
+          </li>
         )}
         {navItems.map((item, i) => (
           <li

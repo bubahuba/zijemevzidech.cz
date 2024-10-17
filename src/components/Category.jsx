@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { siteBase, titleBase } from "./Layout";
 import { Helmet } from "react-helmet";
+import { ReactComponent as Logo } from "../images/logo-zz2.svg"
 
 export const Category = ({ data }) => {
     const { category } = useParams()
@@ -25,9 +26,9 @@ export const Category = ({ data }) => {
                 const itemDate = new Date(Number(date) * 1000).toLocaleDateString("cs-CZ", dateOptions)
                 return (
                     <Link key={i} className="item" to={'/' + category + '/' + slug}>
-                        <img src={galerie[0].small} alt={galerie[0].title} />
                         <h1>{title} <span className="date">{itemDate}</span></h1>
                         <p>{intro}</p>
+                        {galerie[0] ? <img src={galerie[0].small} alt={galerie[0].title} /> : <Logo style={{ width: '100%' }} />}
                     </Link>
                 )
             })}

@@ -40,11 +40,19 @@
 .pswp img{
   object-fit: contain;
 }
-.App {
-  text-align: center;
+body{
   background-image: url('/images/logo-dark.svg');
+  background-color: var(--primary);
   background-position: center bottom;
   background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+}
+.App {
+  text-align: center;
+  padding-bottom: 300px;
+  height: 100vh;
+  overflow: auto;
   .content {
     margin-left: 320px;
     position: relative;
@@ -53,6 +61,7 @@
     background-color: white;
     box-shadow: 0 5px 20px rgba(0, 0, 0, .6);
     border-bottom: 1px dashed var(--primary);
+    margin-bottom: 320px;
     &.notFound{
       background-color: var(--primary);
       height: 100vh;
@@ -82,21 +91,39 @@
     .sunspotloader{
       width: 100%;
     }
+
+    .poster{
+      width: 100%;
+      max-height: 690px;
+      cursor: pointer;
+      object-fit: cover;
+      object-position: left top;
+      transition: max-height .5s;
+      &:focus{
+        max-height: 2400px;
+      }
+    }
     .galerie{
-      display: flex;
-      flex-wrap: wrap;
       gap: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      @media screen and (max-width: 1400px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @media screen and (max-width: 1000px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    
+      @media screen and (max-width: 420px) {
+        grid-template-columns: 1fr;
+      }
       margin-top: 1em;
       img{
-        max-width: 300px;
+        width: 100%;
         cursor: pointer;
-        @media screen and (max-width: 767px) {
-          max-width: calc(50% - 10px);
-        }
-
-        @media screen and (max-width: 420px) {
-          max-width: 100%;
-        }
+        height: 100%;
+        object-fit: cover;
+        object-position: top right;
       }
     }
     .files{
@@ -105,6 +132,7 @@
       gap: 20px;
       font-size: medium;
       margin-top: 1em;
+      margin-bottom: 1em;
       .file{
         text-decoration: none;
         display: flex;
@@ -115,19 +143,20 @@
       }
       .fileName{
         display: flex;
+        justify-content: center;
       }
       .overflow{
         max-width: 120px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        margin-inline-end: -8px;
+        margin-inline-end: -15px;
       }
     }
     .contactForm{
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px;
       align-content: stretch;
       min-width: 300px;
       input, textarea, button {
@@ -178,7 +207,7 @@
       .hiddenFields + div {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
         align-content: stretch;
         transition: max-height .3s;
         overflow: hidden;
@@ -201,23 +230,34 @@
       white-space: nowrap;
     }
     .category{
-      display: flex;
-      flex-wrap: wrap;
       gap: 20px;
-      padding-top: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      @media screen and (max-width: 1400px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      @media screen and (max-width: 1000px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    
+      @media screen and (max-width: 420px) {
+        grid-template-columns: 1fr;
+      }
       .item{
         width: 100%;
-        max-width: 300px;
-        @media screen and (max-width: 767px) {
-          max-width: calc(50% - 10px);
-        }
-
-        @media screen and (max-width: 420px) {
-          max-width: 100%;
-        }
         text-decoration: none;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        h1, p {
+          margin: 0;
+        }
         img{
-          max-width: 100%;
+          width: 100%;
+          object-fit: cover;
+          flex-grow: 1;
+          object-position: left;
         }
       }
     }
@@ -451,7 +491,7 @@
         z-index: 200;
         top: 5px;
         left: 0;
-        padding: 10px;
+        padding: 10px 14px;
       }
     }
   }
@@ -520,6 +560,65 @@
     }
   }
 }
+.page.entries{
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  @media screen and (max-width: 1400px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 420px) {
+    grid-template-columns: 1fr;
+  }
+  .entry{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 20px;
+    height: 400px;
+    overflow: hidden;
+    p, h3{
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+    .thumb{
+      flex-grow: 1;
+      overflow: hidden;
+      position: relative;
+      .markerIcon{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+
+        span{
+          position: absolute;
+          background-color: white;
+          border-radius: 50%;
+          font-size: 16px;
+          color: black;
+          display: block;
+          text-align: center;
+          padding: 3px;
+          width: 16px;
+          left: 13px;
+          top: 7px;
+        }
+      }
+    }
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex: 1;
+      margin-top: 10px;
+    }
+  }
+}
 @media (prefers-color-scheme: dark) {
     .gm-style .gm-style-iw-d::-webkit-scrollbar-track, 
     .gm-style .gm-style-iw-d::-webkit-scrollbar-track-piece,
@@ -530,12 +629,15 @@
     .gm-svpc{
     background-color: #000 !important;
   }
-  .App{
-    background-color: #111 !important;
+  body{
     background-image: url('/images/logo-light.svg');
-    background-blend-mode: screen;
+    background-color: #111 !important;
+
   }
-  body, .App .content{
+  .page.entries{
+    background-color: #222;
+  }
+  .App .content{
     background-color: #222;
     color: #00A4D5;
   }

@@ -110,9 +110,12 @@ export const Map = ({ entries, lists, list }) => {
     }, [_map, dark])
 
     useEffect(() => {
-        if (!entries.length) return;
+        if (!entries?.length) {
+            setNavItems([])
+            return
+        };
         const zoomExtends = () => {
-            if (!window.google || !markers.length || !_map) return;
+            if (!window.google || !markers?.length || !_map) return;
             const _bounds = new window.google.maps.LatLngBounds();
             markers.map((item, i) => {
                 _bounds.extend(item.position);
@@ -125,11 +128,11 @@ export const Map = ({ entries, lists, list }) => {
         let _tmpNavItems = []
         entries.map((item) => {
             var _mappedMarker = {
-                position: getLanLng(item[2]),
+                position: getLanLng(item.gps),
                 infoWindow: getInfoWindowContent(item, this),
             };
             var _mappedNavItem = {
-                title: item[0],
+                title: item.title,
             };
             _tmpMarkers.push(_mappedMarker);
             _tmpNavItems.push(_mappedNavItem);
@@ -172,7 +175,7 @@ export const Map = ({ entries, lists, list }) => {
                 menuOpened={menuOpened}
                 navItems={navItems}
                 toggleMyGPS={toggleMyGPS} />
-            <div className="content" style={{ height: "100vh", padding: 0 }}>
+            <div className="content" style={{ height: "100vh", padding: 0, marginBottom: 0 }}>
                 {isLoaded && <GoogleMap
                     mapContainerStyle={styles.mapa}
                     options={{
