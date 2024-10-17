@@ -22,10 +22,10 @@ export const Category = ({ data }) => {
                 <meta property="og:image" content="/images/og-image.png" />
             </Helmet>
             <div className="category">{data.map((entry, i) => {
-                const { title, intro, galerie, slug, date } = entry;
+                const { title, intro, galerie, slug, date, category: cat } = entry;
                 const itemDate = new Date(Number(date) * 1000).toLocaleDateString("cs-CZ", dateOptions)
                 return (
-                    <Link key={i} className="item" to={'/' + category + '/' + slug}>
+                    <Link key={i} className="item" to={'/' + (category ? category : cat) + '/' + slug}>
                         <h1>{title} <span className="date">{itemDate}</span></h1>
                         <p>{intro}</p>
                         {galerie[0] ? <img src={galerie[0].small} alt={galerie[0].title} /> : <Logo style={{ width: '100%' }} />}
