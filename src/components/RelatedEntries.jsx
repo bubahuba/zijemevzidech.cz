@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import { ReactComponent as Logo } from "../images/logo-zz2.svg"
 import { ReactComponent as MarkerIcon } from "../images/markerIcon.svg"
+import { defaultColor } from "./mapAssets"
 
 export const Icon = ({ number }) => {
     return (
         <div className="markerIcon">
             <span>{number}</span>
-            <MarkerIcon />
+            <MarkerIcon color={defaultColor} />
         </div>
     )
 }

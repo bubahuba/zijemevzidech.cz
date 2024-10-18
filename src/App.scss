@@ -254,10 +254,11 @@ body{
           margin: 0;
         }
         img{
-          width: 100%;
-          object-fit: cover;
           flex-grow: 1;
-          object-position: left;
+          object-fit: cover;
+          object-position: left top;
+          width: 100%;
+          aspect-ratio: 2 / 1;
         }
       }
     }
@@ -355,7 +356,7 @@ body{
     nav {
       position: absolute;
       bottom: 0;
-      top: 290px;
+      top: 250px;
       overflow: auto;
       right: 0;
       left: 0;
@@ -422,17 +423,18 @@ body{
         }
         span{
           padding-left: 10px;
+          font-size: 14px;
         }
       }
       h1 {
         display: block;
         margin-top: 0px;
         margin-bottom: 0px;
-        line-height: 34px;
+        font-size: 24px;
         font-weight: bold;
         @media screen and (max-width: 767px) {
           white-space: nowrap;
-          font-size: 20px;
+          font-size: 16px;
           line-height: 1;
           padding-right: 10px;
         }
@@ -528,9 +530,13 @@ body{
       margin-bottom: 10px;
       color: #6b6a6a;
       font-size: 32px;
-      line-height: 36px;
+      line-height:1.2;
       font-weight: bold;
       margin-top: 10px;
+      @media screen and (max-width: 767px) {
+        font-size: 16px;
+        margin-bottom: 0;
+      }
     }
     h3 {
       margin-top: 10px;

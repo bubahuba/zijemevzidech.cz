@@ -41,7 +41,8 @@ export const Entry = ({ data }) => {
                 const fileName = file_name.split('.').shift();
 
                 return (<a
-                    href={item.file}
+                    href={`${item.file}?${new Date().getTime()}`}
+                    download={`${fileName}.${extension}`}
                     className={'file ' + extension}
                     key={i}
                 ><FileIcon></FileIcon><span className="fileName"><span className={fileName.length > 10 ? 'overflow' : undefined}>{fileName}</span>.{extension}</span>
