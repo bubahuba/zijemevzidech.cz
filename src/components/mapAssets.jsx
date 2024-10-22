@@ -563,7 +563,6 @@ export const Dropdown = ({ list, options }) => {
   );
 
   if (!list) return <div>
-    <p>
       <SunspotLoader
         className={"w-nav-link nav-link"}
         gradientColors={["#00a4d5", "transparent"]}
@@ -571,8 +570,6 @@ export const Dropdown = ({ list, options }) => {
         desktopSize={"40px"}
         mobileSize={"40px"}
       />
-
-    </p>
   </div>;
   return (
     <div style={{ position: "relative" }}>
@@ -610,11 +607,12 @@ export const Dropdown = ({ list, options }) => {
   );
 };
 
-const getImage = (item, title = "") => {
+const getImage = (item, title = "", index) => {
   return (
     <a
       href={item.large}
       data-fslightbox={title}
+      key={index}
     >
       <img
         src={item.small}
@@ -645,7 +643,7 @@ export const getInfoWindowContent = (item) => {
       )}
       {mappedItem.gallery[0] && (
         <div className="gallery">
-          {mappedItem.gallery.map((item, i) => getImage(item, mappedItem.name))}
+          {mappedItem.gallery.map((item, i) => getImage(item, mappedItem.name, i))}
         </div>
       )}
     </div>

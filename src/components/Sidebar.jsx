@@ -42,14 +42,14 @@ export const Sidebar = ({ navItems, currentItem }) => {
           >
             Otevřené DVOrky a DOmy
           </Link>
-          {!navItems.length && <SunspotLoader
+          {!navItems?.length && <SunspotLoader
           className={"w-nav-link nav-link"}
         gradientColors={["#00a4d5", "transparent"]}
         shadowColor={"#00000040"}
         desktopSize={"40px"}
         mobileSize={"40px"}
     />}
-          {(navItems.length > 0) && (
+          {(navItems?.length > 0) && (
             navItems.map((item, i) => (
               <Link to={'/' + item.slug}
                 key={i}

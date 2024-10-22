@@ -5,54 +5,48 @@ import { defaultColor } from "./mapAssets";
 import { apiBase, siteBase, titleBase } from "./Layout";
 import { Helmet } from "react-helmet";
 import { ShowAll } from "./ShowAll";
+import { useQuery } from "@tanstack/react-query";
 
 export const Odvodo = () => {
-  const [entries, setEntries] = useState([]);
-  const [lists, setLists] = useState([]);
   const [currentList, setCurrentList] = useState(undefined);
   const [globalTime, setGlobalTime] = useState(undefined);
   const { list, all } = useParams()
   const odvodoTitle = 'Otevřené dvorky a domy'
 
-  useEffect(() => {
-    if (!lists[0]) {
-      const API_lists = apiBase + 'entries/c/odvodo';
-      const fetchLists = async () => {
-        await fetch(API_lists)
-          .then((response) => response.json())
-          .then((data) => {
-            const _lists = [];
-            data.map(({ title, slug }) => _lists.push({ title, slug }));
-            setLists(_lists);
-          })
-          .catch(function (ex) {
-            console.log("parsing failed", ex);
-          })
-      }
-      fetchLists()
 
-    } else if ((!list && currentList) || (currentList && list === currentList.slug)) {
-      const API_entries = apiBase + 'entry/' + currentList.slug;
-      const fetchEntries = async () => {
-        await fetch(API_entries)
-          .then((response) => response.json())
-          .then((data) => {
-            setEntries(data[0].related);
-            setGlobalTime(data[0].global_time);
-          })
-          .catch(function (ex) {
-            console.log("parsing failed", ex);
-          });
-      }
-      fetchEntries()
+  const { data: lists } = useQuery({
+    queryKey: ['odvodo-lists'],
+    queryFn: () =>
+      fetch(apiBase + 'entries/c/odvodo').then((res) =>
+        res.json(),
+      ).then((data) => {
+        const _lists = [];
+        data.map(({ title, slug }) => _lists.push({ title, slug }));
+        return _lists;
+      }),
+  })
 
-      if (window.gtag) window.gtag("event", "page_view", { page_title: currentList.title, page_location: siteBase + currentList.slug });
-    }
-  }, [lists, currentList, list]);
+
+  const { data: entries } = useQuery({
+    queryKey: [`markers-${currentList?.slug ? currentList.slug : 'index'}`],
+    queryFn: () => {
+      if (!currentList) return [];
+
+      return fetch(apiBase + 'entry/' + currentList.slug).then((res) =>
+        res.json(),
+      ).then((data) => {
+        setGlobalTime(data[0].global_time);
+        if (window.gtag) window.gtag("event", "page_view", { page_title: currentList.title, page_location: siteBase + currentList.slug });
+
+        return data[0].related;
+      })
+    },
+  })
 
   useEffect(() => {
-    setEntries([])
-    if (list && lists[0]) {
+    if (!lists) return;
+    
+    if (list) {
       setCurrentList(lists.find((item) => item.slug === list))
     } else {
       setCurrentList(lists[0])
