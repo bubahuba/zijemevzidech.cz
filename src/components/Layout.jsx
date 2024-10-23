@@ -19,6 +19,7 @@ export const Layout = () => {
     const cat = category ? category : 'aktivity';
 
     const { data: navItems } = useQuery({
+        staleTime: 1000 * 60 * 10,
         queryKey: ['menu'],
         queryFn: () =>
             fetch(apiBase + 'menu').then((res) =>
@@ -27,7 +28,8 @@ export const Layout = () => {
     })
 
     const { isPending, isError, data } = useQuery({
-        queryKey: [`entries-${cat}-${entry? entry: 'index'}`],
+        staleTime: 1000 * 60 * 10,
+        queryKey: [entry ? 'entry/' + entry : 'entries/c/' + cat],
         queryFn: () =>
             fetch(entry ? apiBase + 'entry/' + entry : apiBase + 'entries/c/' + cat).then((res) =>
                 res.json(),

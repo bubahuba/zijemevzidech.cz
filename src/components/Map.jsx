@@ -142,7 +142,7 @@ export const Map = ({ entries, lists, list }) => {
         setNavItems(_tmpNavItems)
         zoomExtends()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [entries])
+    }, [entries,_map])
 
 
     const { isLoaded } = useJsApiLoader({

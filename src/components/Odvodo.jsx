@@ -16,6 +16,7 @@ export const Odvodo = () => {
 
   const { data: lists } = useQuery({
     queryKey: ['odvodo-lists'],
+    staleTime: 1000 * 60 * 10,
     queryFn: () =>
       fetch(apiBase + 'entries/c/odvodo').then((res) =>
         res.json(),
@@ -29,6 +30,7 @@ export const Odvodo = () => {
 
   const { data: entries } = useQuery({
     queryKey: [`markers-${currentList?.slug ? currentList.slug : 'index'}`],
+    staleTime: 1000 * 60 * 10,
     queryFn: () => {
       if (!currentList) return [];
 
@@ -45,7 +47,7 @@ export const Odvodo = () => {
 
   useEffect(() => {
     if (!lists) return;
-    
+
     if (list) {
       setCurrentList(lists.find((item) => item.slug === list))
     } else {
