@@ -114,16 +114,7 @@ export const Map = ({ entries, lists, list }) => {
             setNavItems([])
             return
         };
-        const zoomExtends = () => {
-            if (!window.google || !markers?.length || !_map) return;
-            const _bounds = new window.google.maps.LatLngBounds();
-            markers.map((item, i) => {
-                _bounds.extend(item.position);
-                return true;
-            });
-            _map.fitBounds(_bounds);
-            return;
-        };
+        
         let _tmpMarkers = [];
         let _tmpNavItems = []
         entries.map((item) => {
@@ -140,10 +131,22 @@ export const Map = ({ entries, lists, list }) => {
         });
         setMarkers(_tmpMarkers)
         setNavItems(_tmpNavItems)
-        zoomExtends()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [entries,_map])
+    }, [entries])
 
+useEffect(()=>{
+    const zoomExtends = () => {
+        if (!window.google || !markers?.length || !_map) return;
+        const _bounds = new window.google.maps.LatLngBounds();
+        markers.map((item, i) => {
+            _bounds.extend(item.position);
+            return true;
+        });
+        _map.fitBounds(_bounds);
+        return;
+    };
+    zoomExtends()
+},[_map, markers])
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
