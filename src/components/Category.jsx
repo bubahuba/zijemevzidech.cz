@@ -18,7 +18,7 @@ export const Category = ({ data }) => {
     return (
         <>
             <Helmet>
-                {category && <title>{state ? state.title : ''}{titleBase}</title>}
+                {category && <title>{state ? state.title.replace('&amp;','&') : ''}{titleBase}</title>}
                 <meta property="og:image" content="/images/og-image.png" />
             </Helmet>
             <div className="category">{data.map((entry, i) => {
@@ -26,8 +26,8 @@ export const Category = ({ data }) => {
                 const itemDate = new Date(Number(date) * 1000).toLocaleDateString("cs-CZ", dateOptions)
                 return (
                     <Link key={i} className="item" to={'/' + (category ? category : cat) + '/' + slug}>
-                        <h1>{title} <span className="date">{itemDate}</span></h1>
-                        <p>{intro}</p>
+                        <h1><span dangerouslySetInnerHTML={{ __html: title }}></span> <span className="date">{itemDate}</span></h1>
+                        <p dangerouslySetInnerHTML={{ __html: intro }}></p>
                         {galerie[0] ? <img src={galerie[0].small} alt={galerie[0].title} /> : <Logo style={{ width: '100%' }} />}
                     </Link>
                 )
