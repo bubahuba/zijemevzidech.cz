@@ -6,13 +6,21 @@ import { SunspotLoader } from "../node_modules/react-awesome-loaders";
 
 export const Sidebar = ({ navItems, currentItem }) => {
   const [menuOpened, setMenuOpened] = useState(false);
-  const closeMenu = () => setMenuOpened(false);
-  const { entry } = useParams()
+  const closeMenu = () => {
+    setMenuOpened(false);
+    document.body.classList.remove('blur')
+  };
+  const { entry, category } = useParams()
 
-  useEffect(() => closeMenu(), [currentItem, entry])
+  useEffect(() => closeMenu(), [currentItem, entry, category])
 
   const handleMenuOpen = () => {
     setMenuOpened(!menuOpened)
+    if (menuOpened) {
+      document.body.classList.remove('blur')
+    } else {
+      document.body.classList.add('blur')
+    }
   }
 
   return (
@@ -43,17 +51,17 @@ export const Sidebar = ({ navItems, currentItem }) => {
             Otevřené DVOrky a DOmy
           </Link>
           {!navItems?.length && <SunspotLoader
-          className={"w-nav-link nav-link"}
-        gradientColors={["#00a4d5", "transparent"]}
-        shadowColor={"#00000040"}
-        desktopSize={"40px"}
-        mobileSize={"40px"}
-    />}
+            className={"w-nav-link nav-link"}
+            gradientColors={["#00a4d5", "transparent"]}
+            shadowColor={"#00000040"}
+            desktopSize={"40px"}
+            mobileSize={"40px"}
+          />}
           {(navItems?.length > 0) && (
             navItems.map((item, i) => (
               <Link to={'/' + item.slug}
                 key={i}
-                state={{title: item.title}}
+                state={{ title: item.title }}
                 className={
                   currentItem === item.slug
                     ? "active w-nav-link nav-link"

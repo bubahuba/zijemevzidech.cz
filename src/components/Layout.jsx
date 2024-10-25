@@ -30,6 +30,7 @@ export const Layout = () => {
     const { isPending, isError, data } = useQuery({
         staleTime: 1000 * 60 * 10,
         queryKey: [entry ? 'entry/' + entry : 'entries/c/' + cat],
+        retry: false,
         queryFn: () =>
             fetch(entry ? apiBase + 'entry/' + entry : apiBase + 'entries/c/' + cat).then((res) =>
                 res.json(),
