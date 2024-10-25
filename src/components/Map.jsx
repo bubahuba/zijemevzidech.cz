@@ -37,9 +37,15 @@ export const Map = ({ entries, lists, list }) => {
 
     const handleMenuOpen = () => {
         setMenuOpened(!menuOpened);
+        if (menuOpened) {
+          document.body.classList.remove('blur')
+        } else {
+          document.body.classList.add('blur')
+        }
     };
 
     const closeMenu = () => {
+        document.body.classList.remove('blur')
         setMenuOpened(false);
     };
 
@@ -146,6 +152,7 @@ useEffect(()=>{
         return;
     };
     zoomExtends()
+    closeMenu()
 },[_map, markers])
 
     const { isLoaded } = useJsApiLoader({
