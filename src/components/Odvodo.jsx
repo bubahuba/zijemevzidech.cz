@@ -48,12 +48,13 @@ export const Odvodo = () => {
   useEffect(() => {
     if (!lists) return;
 
-    if (list) {
+    if (list && list !== 'all') {
       setCurrentList(lists.find((item) => item.slug === list))
     } else {
       setCurrentList(lists[0])
     }
   }, [list, lists])
+
 
   return (
     <>
@@ -61,8 +62,8 @@ export const Odvodo = () => {
         <title>{currentList ? currentList.title + ' ✡︎ ' + odvodoTitle : odvodoTitle}{titleBase}</title>
       </Helmet>
       <div className="App" style={{ backgroundColor: defaultColor }}>
-        {all === 'all' && <ShowAll entries={entries} list={currentList} globalTime={globalTime} />}
-        {!all &&
+        {all === 'all' && entries && <ShowAll entries={entries} list={currentList} globalTime={globalTime} />}
+        {!all  &&
           <Map
             entries={entries}
             list={currentList}
