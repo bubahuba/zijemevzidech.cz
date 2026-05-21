@@ -223,10 +223,6 @@ body {
         }
       }
     }
-    @media screen and (max-width: 767px) {
-      margin-left: 0px;
-      padding-top: 50px;
-    }
     p {
       max-width: 780px;
     }
@@ -269,8 +265,13 @@ body {
       }
     }
     @media screen and (max-width: 767px) {
+      margin-left: 0px;
+      padding-top: 50px;
       body.blur & {
         filter: blur(15px);
+      }
+      h1{
+        font-size: 1.2em;
       }
     }
   }
@@ -412,10 +413,6 @@ body {
       text-decoration: none;
       top: 0;
       box-sizing: border-box;
-      @media (prefers-color-scheme: dark) {
-        background-color: #222;
-        color: white;
-      }
       span {
         display: flex;
         flex-direction: column;
@@ -426,6 +423,8 @@ body {
         padding-right: 0;
         display: flex;
         background-color: transparent;
+        justify-content: end;
+        padding-right: 20px;
         svg {
           height: 40px;
         }
@@ -436,6 +435,10 @@ body {
           padding-left: 10px;
           font-size: 14px;
         }
+      }
+      @media (prefers-color-scheme: dark) {
+        background-color: #222;
+        color: white;
       }
       h1 {
         display: block;
