@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SunspotLoader } from "../node_modules/react-awesome-loaders";
 import { Logo } from "./Logo";
 import { renderToString } from "react-dom/server";
+import trebic from "../images/trebic.jpg";
 
 export const defaultColor = window.defaultColor;
 
@@ -572,13 +573,18 @@ export const Dropdown = ({ list, options }) => {
       />
   </div>;
   return (
-    <div style={{ position: "relative" }}>
-      <p
+    <div className="map-dropdown" style={{ position: "relative" }}>
+      <button
+        type="button"
+        className="map-dropdown-toggle"
         style={{ visibility: isOpen ? "hidden" : "visible" }}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
         onClick={() => setTimeout(() => setIsOpen(true), 200)}
       >
         {list.title}
-      </p>
+        <span className="map-dropdown-chevron w-icon-slider-right" aria-hidden="true" />
+      </button>
       <ul
         style={{
           display: isOpen ? "block" : "none",
@@ -696,6 +702,7 @@ export const SidebarComponent = ({
           : "w-nav-menu w-clearfix nav-menu"
       }
       role="navigation"
+      onClick={handleToggleOpen}
     >
       <ul>
         {navigator.geolocation && (
@@ -738,7 +745,19 @@ export const SidebarComponent = ({
           </li>
         ))}
       </ul>
+
+      <a href="https://www.trebic.cz/" target="_blank" rel="noreferrer" className="trebic-link">
+          <img
+            src={trebic}
+            alt="Podopra město Trebic"
+            style={{
+              width: "100%",
+              maxHeight: "20vh",
+              objectFit: "contain",
+              backgroundColor: "#b42016",
+            }}
+          />
+        </a>
     </nav>
-    <div className="w-nav-overlay" />
   </div>
 );

@@ -81,7 +81,7 @@ export const Sidebar = ({ navItems, currentItem }) => {
               </Link>
             ))}
         </ul>
-        <a href="https://www.trebic.cz/" target="_blank" rel="noreferrer">
+        <a href="https://www.trebic.cz/" target="_blank" rel="noreferrer" className="trebic-link">
           <img
             src={trebic}
             alt="Podopra město Trebic"

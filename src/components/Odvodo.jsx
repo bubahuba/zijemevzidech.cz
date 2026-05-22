@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { Map } from "./Map";
 import { defaultColor } from "./mapAssets";
 import { apiBase, siteBase, titleBase } from "./Layout";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { ShowAll } from "./ShowAll";
 import { useQuery } from "@tanstack/react-query";
 

@@ -37,7 +37,6 @@
     content: '✕';
   }
 }
-
 .gm-ui-hover-effect > span {
   background-color: black;
 }
@@ -351,8 +350,9 @@ body {
     bottom: 0px;
     width: 320px;
     z-index: 1;
-    padding-top: 200px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 
     @media (prefers-color-scheme: dark) {
       background-color: #111;
@@ -360,19 +360,19 @@ body {
 
     @media screen and (max-width: 767px) {
       width: 100%;
-      padding-top: 0;
-      height: 0px;
       background-color: transparent;
       overflow: visible;
     }
     nav {
-      position: absolute;
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
       bottom: 0;
-      top: 250px;
       overflow: auto;
       right: 0;
       left: 0;
       transition: all 0.3s;
+      flex-grow: 1;
       ul {
         top: 60px;
         bottom: 0;
@@ -381,11 +381,13 @@ body {
         overflow: auto;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
       }
+      .trebic-link {
+        display: flex;
+      }
       @media screen and (max-width: 767px) {
         transform: translateX(-100%);
         ul {
           position: static;
-          padding-top: 55px;
         }
         bottom: auto;
         width: 100%;
@@ -402,7 +404,7 @@ body {
     }
     .brand,
     .print {
-      position: absolute;
+      position: relative;
       z-index: 130;
       right: 0;
       left: 0;
@@ -417,6 +419,27 @@ body {
       span {
         display: flex;
         flex-direction: column;
+      }
+      .map-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35em;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: none;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        text-align: left;
+        .map-dropdown-chevron {
+          flex-shrink: 0;
+          display: inline-block;
+          font-size: 0.75em;
+          line-height: 1;
+          opacity: 0.7;
+          transform: rotate(90deg);
+        }
       }
       @media screen and (max-width: 767px) {
         padding-top: 12px;

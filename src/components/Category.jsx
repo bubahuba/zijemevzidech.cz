@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { siteBase, titleBase } from "./Layout";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { ReactComponent as Logo } from "../images/logo-zz2.svg"
 
 export const Category = ({ data }) => {

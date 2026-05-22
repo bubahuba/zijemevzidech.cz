@@ -6,6 +6,7 @@ import "photoswipe/dist/photoswipe.css";
 
 import { Odvodo } from "./components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 import * as serviceWorker from "./serviceWorker";
 import { Layout } from "./components";
@@ -18,7 +19,8 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Router>
+      <HelmetProvider>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routes>
           <Route path="/map/:list?/:all?" element={<Odvodo />} />
           <Route path="/:category?/:entry?" element={<Layout />} />
@@ -32,6 +34,7 @@ root.render(
           />
         </Routes>
       </Router>
+      </HelmetProvider>
     </QueryClientProvider>
   </StrictMode>
 );

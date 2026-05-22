@@ -4,7 +4,7 @@ import { FileIcon } from "./FileIcon";
 import { ContactForm } from "./ContactForm";
 import { Link, useParams } from "react-router-dom";
 import { siteBase, titleBase } from "./Layout";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import { RelatedEntries } from "./RelatedEntries";
 
 
