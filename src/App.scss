@@ -362,6 +362,8 @@ body {
       width: 100%;
       background-color: transparent;
       overflow: visible;
+      height: 56px;
+      display: block;
     }
     nav {
       justify-content: space-between;
@@ -395,7 +397,7 @@ body {
         padding-top: 0;
         max-width: 100%;
         position: static;
-        height: 100vh;
+        height: calc(100vh - 56px);
         &.opened {
           transform: translateX(0);
           backdrop-filter: blur(10px);
