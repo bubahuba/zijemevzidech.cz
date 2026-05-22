@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
-import { SidebarComponent, mapStylesDark, mapStyles, getInfoWindowContent, getLanLng, defaultMapCenter, styles, iconGPS, iconActive, icon } from './mapAssets';
-import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { SidebarComponent, mapStylesDark, mapStyles, getInfoWindowContent, getLanLng, defaultMapCenter, styles, iconGPS, getViewportConeIcon, iconActive, icon } from './mapAssets';
+import { GoogleMap, InfoWindow, MapContext, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { siteBase } from './Layout';
 
 export const Map = ({ entries, lists, list }) => {
@@ -22,13 +22,25 @@ export const Map = ({ entries, lists, list }) => {
     const [navItems, setNavItems] = useState([])
     const [markerOpen, setMarkerOpen] = useState(null)
     const [menuOpened, setMenuOpened] = useState(false)
-    const [myGPS, setMyGPS] = useState(false)
+    const [myGPS, setMyGPS] = useState(null)
     const [allowGPS, setAllowGPS] = useState(false)
     const [_map, setMap] = useState(null)
+    const mapRef = useRef(null)
+    const gpsWatchIdRef = useRef(null)
+    const hasGpsFixRef = useRef(false)
+    const shouldPanToGpsRef = useRef(false)
+    const orientationHandlerRef = useRef(null)
+    const [gpsHeading, setGpsHeading] = useState(null)
+    const [streetViewPanorama, setStreetViewPanorama] = useState(null)
+    const [streetViewVisible, setStreetViewVisible] = useState(false)
 
     const handleToggleOpen = (i, item) => {
         closeMenu();
-        setMarkerOpen(markerOpen === i ? null : i)
+        const isClosing = markerOpen === i;
+        setMarkerOpen(isClosing ? null : i);
+        if (!isClosing && i != null && markers[i]?.position) {
+            mapRef.current?.panTo(markers[i].position);
+        }
         setTimeout(() => window.refreshFsLightbox(), 400)
         var activeMenu = document.querySelector("nav li.active");
         if (item) window.gtag("event", "page_view", { page_title: item.title, page_location: siteBase + encodeURI(list) });
@@ -49,56 +61,159 @@ export const Map = ({ entries, lists, list }) => {
         setMenuOpened(false);
     };
 
-    const panMap = (latlng) => {
-        if (!_map) return;
-        return _map.panTo(latlng);
+    const panToGps = (latlng) => {
+        mapRef.current?.panTo(latlng);
     };
 
-    const getMyGPS = useCallback((gpsAllow) => {
-        if (!gpsAllow) return;
-        setGpsLoading(true)
-        var GPSoptions = {
-            enableHighAccuracy: false,
-            timeout: 5000,
-            maximumAge: 0,
+    const stopGpsWatch = useCallback(() => {
+        if (gpsWatchIdRef.current != null) {
+            navigator.geolocation.clearWatch(gpsWatchIdRef.current);
+            gpsWatchIdRef.current = null;
+        }
+    }, []);
+
+    const getHeadingFromOrientation = (event) => {
+        if (typeof event.webkitCompassHeading === 'number' && !Number.isNaN(event.webkitCompassHeading)) {
+            return event.webkitCompassHeading;
+        }
+        if (event.absolute && typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
+            return (360 - event.alpha) % 360;
+        }
+        if (typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
+            return (360 - event.alpha) % 360;
+        }
+        return null;
+    };
+
+    const stopOrientationTracking = useCallback(() => {
+        const handler = orientationHandlerRef.current;
+        if (handler) {
+            window.removeEventListener('deviceorientationabsolute', handler, true);
+            window.removeEventListener('deviceorientation', handler, true);
+            orientationHandlerRef.current = null;
+        }
+        setGpsHeading(null);
+    }, []);
+
+    const startOrientationTracking = useCallback(async () => {
+        stopOrientationTracking();
+
+        const onOrientation = (event) => {
+            const heading = getHeadingFromOrientation(event);
+            if (heading == null) return;
+            setGpsHeading((prev) => {
+                if (prev != null && Math.abs(heading - prev) < 2) return prev;
+                return heading;
+            });
         };
-        var geoSuccess = (position) => {
-            var thisPos = {
+
+        orientationHandlerRef.current = onOrientation;
+
+        const attach = () => {
+            window.addEventListener('deviceorientationabsolute', onOrientation, true);
+            window.addEventListener('deviceorientation', onOrientation, true);
+        };
+
+        if (typeof DeviceOrientationEvent === 'undefined') return;
+
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            try {
+                const permission = await DeviceOrientationEvent.requestPermission();
+                if (permission === 'granted') attach();
+            } catch (error) {
+                console.log('Device orientation permission denied');
+            }
+            return;
+        }
+
+        attach();
+    }, [stopOrientationTracking]);
+
+    const getMyGPS = useCallback((gpsAllow) => {
+        if (!gpsAllow) {
+            stopGpsWatch();
+            stopOrientationTracking();
+            setGpsLoading(false);
+            setMyGPS(null);
+            hasGpsFixRef.current = false;
+            shouldPanToGpsRef.current = false;
+            return;
+        }
+
+        stopGpsWatch();
+        hasGpsFixRef.current = false;
+        setGpsLoading(true);
+        shouldPanToGpsRef.current = true;
+        startOrientationTracking();
+
+        const GPSoptions = {
+            enableHighAccuracy: false,
+            timeout: 30000,
+            maximumAge: 60000,
+        };
+
+        const onGpsPosition = (position) => {
+            const thisPos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             };
-            setGpsLoading(false)
-            panMap(thisPos);
-            setMarkerOpen(null)
+            if (!Number.isFinite(thisPos.lat) || !Number.isFinite(thisPos.lng)) return;
+
+            hasGpsFixRef.current = true;
+            const movementHeading = position.coords.heading;
+            if (typeof movementHeading === 'number' && !Number.isNaN(movementHeading) && movementHeading >= 0) {
+                setGpsHeading(movementHeading);
+            }
+            setGpsLoading(false);
+            setMyGPS(thisPos);
+            setMarkerOpen(null);
             closeMenu();
-            setMyGPS(thisPos)
+            if (shouldPanToGpsRef.current) {
+                panToGps(thisPos);
+                shouldPanToGpsRef.current = false;
+            }
         };
-        var geoError = (error) => {
+
+        const onGpsError = (error) => {
             console.log("Error occurred. Error code: " + error.code);
-            // error.code can be:
-            //   0: unknown error
-            //   1: permission denied
-            //   2: position unavailable (error response from location provider)
-            //   3: timed out
+            setGpsLoading(false);
+            if (error.code === 1) {
+                setAllowGPS(false);
+                setMyGPS(null);
+                hasGpsFixRef.current = false;
+                stopGpsWatch();
+                stopOrientationTracking();
+            }
         };
-        var process;
-        if (gpsAllow) {
-            process = navigator.geolocation.watchPosition(
-                geoSuccess,
-                geoError,
-                GPSoptions
-            );
-        } else {
-            navigator.geolocation.clearWatch(process);
-        }
-        return;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
+        navigator.geolocation.getCurrentPosition(
+            onGpsPosition,
+            onGpsError,
+            GPSoptions
+        );
+
+        gpsWatchIdRef.current = navigator.geolocation.watchPosition(
+            onGpsPosition,
+            (error) => {
+                if (hasGpsFixRef.current) return;
+                onGpsError(error);
+            },
+            GPSoptions
+        );
+    }, [stopGpsWatch, stopOrientationTracking, startOrientationTracking]);
 
     const toggleMyGPS = (currentGPS) => {
-        setAllowGPS(!currentGPS)
-        getMyGPS(!currentGPS)
+        const next = !currentGPS;
+        setAllowGPS(next);
+        getMyGPS(next);
     };
+
+    useEffect(() => {
+        return () => {
+            stopGpsWatch();
+            stopOrientationTracking();
+        };
+    }, [stopGpsWatch, stopOrientationTracking]);
 
     useEffect(() => {
         if (window.matchMedia) {
@@ -108,12 +223,6 @@ export const Map = ({ entries, lists, list }) => {
             );
         }
     })
-
-    useEffect(() => {
-        if (_map) {
-            _map.styles = !dark ? mapStylesDark : mapStyles
-        }
-    }, [_map, dark])
 
     useEffect(() => {
         if (!entries?.length) {
@@ -140,6 +249,20 @@ export const Map = ({ entries, lists, list }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [entries])
 
+    useEffect(() => {
+        if (!_map || !window.google) return;
+
+        const panorama = _map.getStreetView();
+        setStreetViewPanorama(panorama);
+        setStreetViewVisible(panorama.getVisible());
+
+        const listener = panorama.addListener('visible_changed', () => {
+            setStreetViewVisible(panorama.getVisible());
+        });
+
+        return () => window.google.maps.event.removeListener(listener);
+    }, [_map]);
+
 useEffect(()=>{
     const zoomExtends = () => {
         if (!window.google || !markers?.length || !_map) return;
@@ -160,16 +283,35 @@ useEffect(()=>{
         googleMapsApiKey: window.apiKey
     })
 
+    const viewportConeOptions = useMemo(() => ({
+        flat: true,
+        rotation: gpsHeading ?? 0,
+    }), [gpsHeading]);
+
+    const mapOptions = useMemo(() => ({
+        styles: dark ? mapStylesDark : mapStyles,
+        mapTypeControl: false,
+        panControl: false,
+        streetViewControl: true,
+        scrollwheel: true,
+        zoomControl: true,
+        fullscreenControl: false,
+    }), [dark]);
+
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(defaultMapCenter);
         map.fitBounds(bounds);
 
+        mapRef.current = map;
         setMap(map)
     }, [])
 
     const onUnmount = useCallback(function callback(map) {
+        stopGpsWatch();
+        stopOrientationTracking();
+        mapRef.current = null;
         setMap(null)
-    }, [])
+    }, [stopGpsWatch, stopOrientationTracking])
 
     return (
 
@@ -188,32 +330,34 @@ useEffect(()=>{
             <div className="content" style={{ height: "100vh", padding: 0, marginBottom: 0 }}>
                 {isLoaded && <GoogleMap
                     mapContainerStyle={styles.mapa}
-                    options={{
-                        styles: dark ? mapStylesDark : mapStyles,
-                        center: defaultMapCenter,
-                        zoom: 18,
-                        mapTypeControl: false,
-                        panControl: false,
-                        streetViewControl: true,
-                        scrollwheel: true,
-                        zoomControl: true,
-                        fullscreenControl: false,
-                    }}
+                    options={mapOptions}
                     onClick={() => setMenuOpened(false)}
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                 >
                     <>
 
+                        {allowGPS && myGPS && gpsHeading != null && (
+                            <Marker
+                                position={myGPS}
+                                icon={getViewportConeIcon()}
+                                options={viewportConeOptions}
+                                clickable={false}
+                                zIndex={999}
+                                key="myGPS-viewport"
+                            />
+                        )}
+
                         {allowGPS && myGPS && (
                             <Marker
                                 position={myGPS}
                                 onClick={() => {
-                                    panMap(myGPS);
+                                    panToGps(myGPS);
                                     setMarkerOpen(null);
                                 }}
                                 icon={iconGPS}
-                                key={"myGPS"}
+                                zIndex={1000}
+                                key="myGPS"
                             />
                         )}
 
@@ -232,29 +376,36 @@ useEffect(()=>{
                             );
                         })}
                         {markerOpen > -1 &&
-                            markers[markerOpen] && (
-                                <InfoWindow
-                                    options={{
-                                        pixelOffset: { width: 0, height: -23 },
-                                        closeBoxMargin: 20,
-                                        pane: "floatPane",
-                                    }}
-                                    position={
-                                        markers[markerOpen].position
-                                    }
-                                    onCloseClick={() => handleToggleOpen(null)}
-                                >
-                                    <div
-                                        className="infoBox"
-                                        dangerouslySetInnerHTML={{
-                                            __html:
-                                                markers[markerOpen][
-                                                "infoWindow"
-                                                ]["content"],
+                            markers[markerOpen] && (() => {
+                                const infoWindow = (
+                                    <InfoWindow
+                                        key={streetViewVisible ? 'streetview' : 'map'}
+                                        options={{
+                                            pixelOffset: { width: 0, height: -23 },
+                                            closeBoxMargin: 20,
+                                            disableAutoPan: true,
                                         }}
-                                    />
-                                </InfoWindow>
-                            )}</>
+                                        position={markers[markerOpen].position}
+                                        onCloseClick={() => handleToggleOpen(null)}
+                                    >
+                                        <div
+                                            className="infoBox"
+                                            dangerouslySetInnerHTML={{
+                                                __html:
+                                                    markers[markerOpen][
+                                                    "infoWindow"
+                                                    ]["content"],
+                                            }}
+                                        />
+                                    </InfoWindow>
+                                );
+
+                                return streetViewVisible && streetViewPanorama ? (
+                                    <MapContext.Provider value={streetViewPanorama}>
+                                        {infoWindow}
+                                    </MapContext.Provider>
+                                ) : infoWindow;
+                            })()}</>
                 </GoogleMap>}
             </div>
         </ >

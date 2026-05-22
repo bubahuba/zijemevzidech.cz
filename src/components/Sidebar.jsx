@@ -76,6 +76,7 @@ export const Sidebar = ({ navItems, currentItem }) => {
                     : "w-nav-link nav-link"
                 }
                 style={currentItem === item.slug ? styles.active : null}
+                onClick={(ev)=>ev.stopPropagation()}
               >
                 {item.title}
               </Link>

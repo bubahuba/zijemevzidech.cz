@@ -467,7 +467,7 @@ export const icon = {
   fillOpacity: 1,
   anchor: { x: 15, y: 34 },
   strokeWeight: 4,
-  scale: 1
+  scale: 1,
 };
 
 export const menuIconGpsOn = (active) => {
@@ -513,12 +513,49 @@ export const menuIconGpsOff = () => {
 };
 
 export const iconGPS = {
-  path: "M11.069,2.444c-4.275,0-7.753,3.464-7.753,7.722c0,4.261,3.478,7.727,7.753,7.727s7.753-3.466,7.753-7.727C18.82,5.908,15.342,2.444,11.069,2.444z M11.069,16.436c-3.467,0-6.288-2.812-6.288-6.27c0-3.456,2.821-6.267,6.288-6.267c3.465,0,6.286,2.811,6.288,6.266C17.357,13.624,14.536,16.436,11.069,16.436z M16.357,10.167c0,2.906-2.372,5.27-5.288,5.27s-5.288-2.364-5.288-5.27c0-2.904,2.372-5.267,5.288-5.267C13.983,4.9,16.355,7.263,16.357,10.167z",
+  path: 0,
   fillColor: "#FF0DD1",
   fillOpacity: 1,
-  anchor: { x: 10, y: 10 },
-  strokeWeight: 0,
-  scale: 1,
+  strokeColor: "#FFFFFF",
+  strokeWeight: 2,
+  scale: 10,
+};
+
+let viewportConeIconCache = null;
+
+export const getViewportConeIcon = () => {
+  if (viewportConeIconCache) return viewportConeIconCache;
+
+  const size = 160;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  const cx = size / 2;
+  const cy = size / 2;
+  const length = 72;
+  const spread = 48;
+
+  const gradient = ctx.createLinearGradient(cx, cy, cx, cy - length);
+  gradient.addColorStop(0, "rgba(66, 133, 244, 0.55)");
+  gradient.addColorStop(0.45, "rgba(66, 133, 244, 0.18)");
+  gradient.addColorStop(1, "rgba(66, 133, 244, 0)");
+
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx - spread, cy - length);
+  ctx.lineTo(cx + spread, cy - length);
+  ctx.closePath();
+  ctx.fillStyle = gradient;
+  ctx.fill();
+
+  viewportConeIconCache = {
+    url: canvas.toDataURL(),
+    anchor: { x: cx, y: cy },
+    scaledSize: { width: size, height: size },
+  };
+
+  return viewportConeIconCache;
 };
 
 export const getLanLng = (latlng) => {
@@ -537,7 +574,7 @@ const listenForOutsideClicks = (
   listening,
   setListening,
   menuRef,
-  setIsOpen
+  setIsOpen,
 ) => {
   return () => {
     if (listening) return;
@@ -554,24 +591,26 @@ const listenForOutsideClicks = (
 };
 
 export const Dropdown = ({ list, options }) => {
-
   const menuRef = useRef(null);
   const [listening, setListening] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() =>
-    listenForOutsideClicks(listening, setListening, menuRef, setIsOpen)
+    listenForOutsideClicks(listening, setListening, menuRef, setIsOpen),
   );
 
-  if (!list) return <div>
-      <SunspotLoader
-        className={"w-nav-link nav-link"}
-        gradientColors={["#00a4d5", "transparent"]}
-        shadowColor={"#00000040"}
-        desktopSize={"40px"}
-        mobileSize={"40px"}
-      />
-  </div>;
+  if (!list)
+    return (
+      <div>
+        <SunspotLoader
+          className={"w-nav-link nav-link"}
+          gradientColors={["#00a4d5", "transparent"]}
+          shadowColor={"#00000040"}
+          desktopSize={"40px"}
+          mobileSize={"40px"}
+        />
+      </div>
+    );
   return (
     <div className="map-dropdown" style={{ position: "relative" }}>
       <button
@@ -583,7 +622,10 @@ export const Dropdown = ({ list, options }) => {
         onClick={() => setTimeout(() => setIsOpen(true), 200)}
       >
         {list.title}
-        <span className="map-dropdown-chevron w-icon-slider-right" aria-hidden="true" />
+        <span
+          className="map-dropdown-chevron w-icon-slider-right"
+          aria-hidden="true"
+        />
       </button>
       <ul
         style={{
@@ -599,7 +641,8 @@ export const Dropdown = ({ list, options }) => {
                 to={"/map/" + listOption.slug}
                 className={list.slug === listOption.slug ? "active" : ""}
                 style={{
-                  color: list.slug === listOption.slug ? defaultColor : "inherit",
+                  color:
+                    list.slug === listOption.slug ? defaultColor : "inherit",
                 }}
                 onClick={() => setIsOpen(false)}
               >
@@ -615,16 +658,8 @@ export const Dropdown = ({ list, options }) => {
 
 const getImage = (item, title = "", index) => {
   return (
-    <a
-      href={item.large}
-      data-fslightbox={title}
-      key={index}
-    >
-      <img
-        src={item.small}
-        alt={title}
-        className="thumb"
-      />
+    <a href={item.large} data-fslightbox={title} key={index}>
+      <img src={item.small} alt={title} className="thumb" />
     </a>
   );
 };
@@ -649,7 +684,9 @@ export const getInfoWindowContent = (item) => {
       )}
       {mappedItem.gallery[0] && (
         <div className="gallery">
-          {mappedItem.gallery.map((item, i) => getImage(item, mappedItem.name, i))}
+          {mappedItem.gallery.map((item, i) =>
+            getImage(item, mappedItem.name, i),
+          )}
         </div>
       )}
     </div>
@@ -702,7 +739,6 @@ export const SidebarComponent = ({
           : "w-nav-menu w-clearfix nav-menu"
       }
       role="navigation"
-      onClick={handleToggleOpen}
     >
       <ul>
         {navigator.geolocation && (
@@ -710,7 +746,10 @@ export const SidebarComponent = ({
             className={
               allowGPS ? "w-nav-link nav-link octive" : "w-nav-link nav-link "
             }
-            onClick={() => toggleMyGPS(allowGPS)}
+            onClick={(ev) => {
+              ev.stopPropagation();
+              toggleMyGPS(allowGPS);
+            }}
             style={allowGPS ? styles.active : null}
             key="gps"
           >
@@ -738,7 +777,10 @@ export const SidebarComponent = ({
                 ? "active w-nav-link nav-link"
                 : "w-nav-link nav-link"
             }
-            onClick={() => handleToggleOpen(i, item)}
+            onClick={(ev) => {
+              ev.stopPropagation();
+              handleToggleOpen(i, item);
+            }}
             style={markerOpen === i ? styles.active : null}
           >
             {item.title}
@@ -746,18 +788,23 @@ export const SidebarComponent = ({
         ))}
       </ul>
 
-      <a href="https://www.trebic.cz/" target="_blank" rel="noreferrer" className="trebic-link">
-          <img
-            src={trebic}
-            alt="Podopra město Trebic"
-            style={{
-              width: "100%",
-              maxHeight: "20vh",
-              objectFit: "contain",
-              backgroundColor: "#b42016",
-            }}
-          />
-        </a>
+      <a
+        href="https://www.trebic.cz/"
+        target="_blank"
+        rel="noreferrer"
+        className="trebic-link"
+      >
+        <img
+          src={trebic}
+          alt="Podopra město Trebic"
+          style={{
+            width: "100%",
+            maxHeight: "20vh",
+            objectFit: "contain",
+            backgroundColor: "#b42016",
+          }}
+        />
+      </a>
     </nav>
   </div>
 );
