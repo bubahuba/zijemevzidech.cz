@@ -49,6 +49,7 @@ export const Sidebar = ({ navItems, currentItem }) => {
           top: 165,
           justifyContent: "space-between",
         }}
+        onClick={handleMenuOpen}
       >
         <ul>
           <Link to={"/map"} key="map" className={"w-nav-link nav-link"}>

@@ -33,6 +33,9 @@
 }
 .w-icon-nav-menu:before {
   content: "\e602";
+  .blur &{
+    content: '✕';
+  }
 }
 
 .gm-ui-hover-effect > span {
@@ -266,11 +269,8 @@ body {
     }
     @media screen and (max-width: 767px) {
       margin-left: 0px;
-      padding-top: 50px;
-      body.blur & {
-        filter: blur(15px);
-      }
-      h1{
+      padding-top: 80px;
+      h1 {
         font-size: 1.2em;
       }
     }
@@ -396,6 +396,7 @@ body {
         height: 100vh;
         &.opened {
           transform: translateX(0);
+          backdrop-filter: blur(10px);
         }
       }
     }
@@ -419,11 +420,11 @@ body {
       }
       @media screen and (max-width: 767px) {
         padding-top: 12px;
-        padding-left: 40px;
+        padding-left: 10px;
         padding-right: 0;
         display: flex;
         background-color: transparent;
-        justify-content: end;
+        justify-content: start;
         padding-right: 20px;
         svg {
           height: 40px;
@@ -506,7 +507,7 @@ body {
         position: absolute;
         z-index: 200;
         top: 5px;
-        left: 0;
+        right: 0;
         padding: 10px 14px;
       }
     }
@@ -579,6 +580,9 @@ body {
         color: #ccc;
       }
     }
+  }
+  .gm-style .gm-style-iw-d{
+    margin-top: -40px;
   }
 }
 .page.entries {
