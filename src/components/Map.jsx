@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { SidebarComponent, mapStylesDark, mapStyles, getInfoWindowContent, getLanLng, defaultMapCenter, styles, iconGPS, getViewportConeIcon, iconActive, icon } from './mapAssets';
+import { SidebarComponent, mapStylesDark, mapStyles, getInfoWindowContent, getLanLng, defaultMapCenter, styles, iconGPS, iconActive, icon } from './mapAssets';
 import { GoogleMap, InfoWindow, MapContext, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { siteBase } from './Layout';
 
@@ -29,8 +29,6 @@ export const Map = ({ entries, lists, list }) => {
     const gpsWatchIdRef = useRef(null)
     const hasGpsFixRef = useRef(false)
     const shouldPanToGpsRef = useRef(false)
-    const orientationHandlerRef = useRef(null)
-    const [gpsHeading, setGpsHeading] = useState(null)
     const [streetViewPanorama, setStreetViewPanorama] = useState(null)
     const [streetViewVisible, setStreetViewVisible] = useState(false)
 
@@ -72,67 +70,9 @@ export const Map = ({ entries, lists, list }) => {
         }
     }, []);
 
-    const getHeadingFromOrientation = (event) => {
-        if (typeof event.webkitCompassHeading === 'number' && !Number.isNaN(event.webkitCompassHeading)) {
-            return event.webkitCompassHeading;
-        }
-        if (event.absolute && typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
-            return (360 - event.alpha) % 360;
-        }
-        if (typeof event.alpha === 'number' && !Number.isNaN(event.alpha)) {
-            return (360 - event.alpha) % 360;
-        }
-        return null;
-    };
-
-    const stopOrientationTracking = useCallback(() => {
-        const handler = orientationHandlerRef.current;
-        if (handler) {
-            window.removeEventListener('deviceorientationabsolute', handler, true);
-            window.removeEventListener('deviceorientation', handler, true);
-            orientationHandlerRef.current = null;
-        }
-        setGpsHeading(null);
-    }, []);
-
-    const startOrientationTracking = useCallback(async () => {
-        stopOrientationTracking();
-
-        const onOrientation = (event) => {
-            const heading = getHeadingFromOrientation(event);
-            if (heading == null) return;
-            setGpsHeading((prev) => {
-                if (prev != null && Math.abs(heading - prev) < 2) return prev;
-                return heading;
-            });
-        };
-
-        orientationHandlerRef.current = onOrientation;
-
-        const attach = () => {
-            window.addEventListener('deviceorientationabsolute', onOrientation, true);
-            window.addEventListener('deviceorientation', onOrientation, true);
-        };
-
-        if (typeof DeviceOrientationEvent === 'undefined') return;
-
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-            try {
-                const permission = await DeviceOrientationEvent.requestPermission();
-                if (permission === 'granted') attach();
-            } catch (error) {
-                console.log('Device orientation permission denied');
-            }
-            return;
-        }
-
-        attach();
-    }, [stopOrientationTracking]);
-
     const getMyGPS = useCallback((gpsAllow) => {
         if (!gpsAllow) {
             stopGpsWatch();
-            stopOrientationTracking();
             setGpsLoading(false);
             setMyGPS(null);
             hasGpsFixRef.current = false;
@@ -144,7 +84,6 @@ export const Map = ({ entries, lists, list }) => {
         hasGpsFixRef.current = false;
         setGpsLoading(true);
         shouldPanToGpsRef.current = true;
-        startOrientationTracking();
 
         const GPSoptions = {
             enableHighAccuracy: false,
@@ -160,10 +99,6 @@ export const Map = ({ entries, lists, list }) => {
             if (!Number.isFinite(thisPos.lat) || !Number.isFinite(thisPos.lng)) return;
 
             hasGpsFixRef.current = true;
-            const movementHeading = position.coords.heading;
-            if (typeof movementHeading === 'number' && !Number.isNaN(movementHeading) && movementHeading >= 0) {
-                setGpsHeading(movementHeading);
-            }
             setGpsLoading(false);
             setMyGPS(thisPos);
             setMarkerOpen(null);
@@ -182,7 +117,6 @@ export const Map = ({ entries, lists, list }) => {
                 setMyGPS(null);
                 hasGpsFixRef.current = false;
                 stopGpsWatch();
-                stopOrientationTracking();
             }
         };
 
@@ -200,7 +134,7 @@ export const Map = ({ entries, lists, list }) => {
             },
             GPSoptions
         );
-    }, [stopGpsWatch, stopOrientationTracking, startOrientationTracking]);
+    }, [stopGpsWatch]);
 
     const toggleMyGPS = (currentGPS) => {
         const next = !currentGPS;
@@ -209,11 +143,8 @@ export const Map = ({ entries, lists, list }) => {
     };
 
     useEffect(() => {
-        return () => {
-            stopGpsWatch();
-            stopOrientationTracking();
-        };
-    }, [stopGpsWatch, stopOrientationTracking]);
+        return () => stopGpsWatch();
+    }, [stopGpsWatch]);
 
     useEffect(() => {
         if (window.matchMedia) {
@@ -283,11 +214,6 @@ useEffect(()=>{
         googleMapsApiKey: window.apiKey
     })
 
-    const viewportConeOptions = useMemo(() => ({
-        flat: true,
-        rotation: gpsHeading ?? 0,
-    }), [gpsHeading]);
-
     const mapOptions = useMemo(() => ({
         styles: dark ? mapStylesDark : mapStyles,
         mapTypeControl: false,
@@ -308,10 +234,9 @@ useEffect(()=>{
 
     const onUnmount = useCallback(function callback(map) {
         stopGpsWatch();
-        stopOrientationTracking();
         mapRef.current = null;
         setMap(null)
-    }, [stopGpsWatch, stopOrientationTracking])
+    }, [stopGpsWatch])
 
     return (
 
@@ -336,17 +261,6 @@ useEffect(()=>{
                     onUnmount={onUnmount}
                 >
                     <>
-
-                        {allowGPS && myGPS && gpsHeading != null && (
-                            <Marker
-                                position={myGPS}
-                                icon={getViewportConeIcon()}
-                                options={viewportConeOptions}
-                                clickable={false}
-                                zIndex={999}
-                                key="myGPS-viewport"
-                            />
-                        )}
 
                         {allowGPS && myGPS && (
                             <Marker

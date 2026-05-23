@@ -521,43 +521,6 @@ export const iconGPS = {
   scale: 10,
 };
 
-let viewportConeIconCache = null;
-
-export const getViewportConeIcon = () => {
-  if (viewportConeIconCache) return viewportConeIconCache;
-
-  const size = 160;
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d");
-  const cx = size / 2;
-  const cy = size / 2;
-  const length = 72;
-  const spread = 48;
-
-  const gradient = ctx.createLinearGradient(cx, cy, cx, cy - length);
-  gradient.addColorStop(0, "rgba(66, 133, 244, 0.55)");
-  gradient.addColorStop(0.45, "rgba(66, 133, 244, 0.18)");
-  gradient.addColorStop(1, "rgba(66, 133, 244, 0)");
-
-  ctx.beginPath();
-  ctx.moveTo(cx, cy);
-  ctx.lineTo(cx - spread, cy - length);
-  ctx.lineTo(cx + spread, cy - length);
-  ctx.closePath();
-  ctx.fillStyle = gradient;
-  ctx.fill();
-
-  viewportConeIconCache = {
-    url: canvas.toDataURL(),
-    anchor: { x: cx, y: cy },
-    scaledSize: { width: size, height: size },
-  };
-
-  return viewportConeIconCache;
-};
-
 export const getLanLng = (latlng) => {
   var tmp = latlng.split(",");
   return {
