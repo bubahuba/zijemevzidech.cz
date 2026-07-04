@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { PageHead } from "./PageHead";
-import { siteBase, titleBase } from "@/lib/constants";
+import { GtagPageView } from "./GtagPageView";
+import { siteBase } from "@/lib/constants";
 
 export function Category({ data, categoryTitle }) {
   const params = useParams();
@@ -15,20 +15,12 @@ export function Category({ data, categoryTitle }) {
     day: "numeric",
   };
 
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", "page_view", {
-      page_title: category,
-      page_location: siteBase + (category ? category + "/" : ""),
-    });
-  }
-
-  const title = categoryTitle
-    ? categoryTitle.replace("&amp;", "&") + titleBase
-    : titleBase;
-
   return (
     <>
-      <PageHead title={title} ogImages={["/images/og-image.png"]} />
+      <GtagPageView
+        title={categoryTitle || category}
+        location={siteBase + (category ? category + "/" : "")}
+      />
       <div className="category">
         {data.map((entry, i) => {
           const { title: entryTitle, intro, galerie, slug, date, category: cat } =

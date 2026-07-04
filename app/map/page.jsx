@@ -1,7 +1,24 @@
-export const dynamic = "force-dynamic";
-
 import { Odvodo } from "@/components/Odvodo";
+import { fetchOdvodoLists, getOdvodoPageData } from "@/lib/api";
+import { mapMetadata } from "@/lib/metadata";
 
-export default function MapPage() {
-  return <Odvodo />;
+export const revalidate = 600;
+
+export async function generateMetadata() {
+  const lists = await fetchOdvodoLists();
+  return mapMetadata(lists?.[0]?.title);
+}
+
+export default async function MapPage() {
+  const { lists, currentList, entries, globalTime } =
+    await getOdvodoPageData();
+
+  return (
+    <Odvodo
+      initialLists={lists}
+      initialCurrentList={currentList}
+      initialEntries={entries}
+      initialGlobalTime={globalTime}
+    />
+  );
 }

@@ -6,8 +6,8 @@ import { Gallery, Item } from "react-photoswipe-gallery";
 import { FileIcon } from "./FileIcon";
 import { ContactForm } from "./ContactForm";
 import { RelatedEntries } from "./RelatedEntries";
-import { PageHead } from "./PageHead";
-import { siteBase, titleBase } from "@/lib/constants";
+import { GtagPageView } from "./GtagPageView";
+import { siteBase } from "@/lib/constants";
 
 export function Entry({ data }) {
   const params = useParams();
@@ -40,19 +40,11 @@ export function Entry({ data }) {
     dateOptions,
   );
 
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", "page_view", {
-      page_title: title,
-      page_location: siteBase + (category ? category + "/" + entry : ""),
-    });
-  }
-
   return (
     <>
-      <PageHead
-        title={title.replace("&amp;", "&") + titleBase}
-        description={intro || undefined}
-        ogImages={galerie.map((item) => item.large)}
+      <GtagPageView
+        title={title}
+        location={siteBase + (category ? category + "/" + entry : "")}
       />
       <h1>
         <span dangerouslySetInnerHTML={{ __html: title }} />{" "}

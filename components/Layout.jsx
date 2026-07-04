@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { SunspotLoader } from "./SunspotLoader";
@@ -10,7 +9,13 @@ import { Category } from "./Category";
 import { NotFound } from "./NotFound";
 import { apiBase } from "@/lib/constants";
 
-export function Layout({ category: categoryProp, entry: entryProp }) {
+export function Layout({
+  category: categoryProp,
+  entry: entryProp,
+  initialNavItems,
+  initialData,
+  initialError,
+}) {
   const params = useParams();
   const category = categoryProp ?? params?.category;
   const entry = entryProp ?? params?.entry;
@@ -19,6 +24,8 @@ export function Layout({ category: categoryProp, entry: entryProp }) {
   const { data: navItems } = useQuery({
     queryKey: ["menu"],
     queryFn: () => fetch(apiBase + "menu").then((res) => res.json()),
+    initialData: initialNavItems,
+    staleTime: 1000 * 60 * 10,
   });
 
   const { isPending, isError, data } = useQuery({
@@ -28,11 +35,14 @@ export function Layout({ category: categoryProp, entry: entryProp }) {
       fetch(
         entry ? apiBase + "entry/" + entry : apiBase + "entries/c/" + cat,
       ).then((res) => res.json()),
+    initialData: initialData,
+    staleTime: 1000 * 60 * 10,
   });
 
   const categoryTitle = navItems?.find((item) => item.slug === cat)?.title;
+  const showError = initialError ?? isError;
 
-  if (isError) {
+  if (showError) {
     return (
       <div className="App">
         <Sidebar navItems={navItems} />
