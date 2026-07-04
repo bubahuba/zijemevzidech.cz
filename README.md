@@ -14,9 +14,25 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Build
 
 ```bash
-yarn build              # Next.js build only
+yarn build              # Next.js build (Cloudflare / Node)
 yarn build:cloudflare   # Full OpenNext bundle for Cloudflare
+yarn build:static       # Static HTML export for shared hosting → out/
+yarn generate-paths     # Refresh data/static-paths.json when API unreachable at build
 ```
+
+## Shared hosting (Apache / cPanel)
+
+```bash
+yarn build:static
+```
+
+Upload the contents of the **`out/`** directory to your web root (e.g. `public_html`). The build includes:
+
+- Pre-rendered HTML for all routes (48 pages)
+- OG meta tags in each page
+- `.htaccess` for Apache URL rewriting
+
+After adding new content, run `yarn generate-paths` and rebuild.
 
 ## Cloudflare
 

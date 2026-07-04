@@ -1,6 +1,16 @@
+const isStaticExport = process.env.STATIC_EXPORT === "1";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  ...(isStaticExport
+    ? {
+        output: "export",
+        trailingSlash: true,
+        images: { unoptimized: true },
+      }
+    : {
+        output: "standalone",
+      }),
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -13,5 +23,7 @@ const nextConfig = {
 
 module.exports = nextConfig;
 
-const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
-initOpenNextCloudflareForDev();
+if (!isStaticExport) {
+  const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
+  initOpenNextCloudflareForDev();
+}
