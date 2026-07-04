@@ -14,7 +14,8 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Build
 
 ```bash
-yarn build
+yarn build              # Next.js build only
+yarn build:cloudflare   # Full OpenNext bundle for Cloudflare
 ```
 
 ## Cloudflare
@@ -25,16 +26,18 @@ Preview locally in the Workers runtime:
 yarn preview
 ```
 
-Deploy to Cloudflare:
+Deploy to Cloudflare (build + deploy in one step):
 
 ```bash
 yarn deploy
 ```
 
-For Cloudflare Pages/Workers CI, set:
+For Cloudflare Workers CI with separate build and deploy steps:
 
-- **Build command:** `yarn build`
-- **Deploy command:** `yarn deploy`
+- **Build command:** `yarn build:cloudflare`
+- **Deploy command:** `npx wrangler deploy`
+
+Do not use plain `yarn build` before deploy — that only runs `next build` and skips the OpenNext bundle (`.open-next/`), which causes the deploy error you saw.
 
 Optional environment variable:
 
