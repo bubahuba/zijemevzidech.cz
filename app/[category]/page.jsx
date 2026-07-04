@@ -7,6 +7,7 @@ import {
 import { categoryMetadata } from "@/lib/metadata";
 
 export const revalidate = 600;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   return fetchAllCategoryParams();
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }) {
 
 export default async function CategoryPage({ params }) {
   const { category } = await params;
-  const { navItems, data, isError } = await getLayoutPageData(category);
+  const { navItems, data, isError, offline } = await getLayoutPageData(category);
 
   return (
     <Layout
@@ -29,6 +30,7 @@ export default async function CategoryPage({ params }) {
       initialNavItems={navItems}
       initialData={data}
       initialError={isError}
+      offline={offline}
     />
   );
 }

@@ -11,7 +11,7 @@ export async function generateMetadata() {
 }
 
 export default async function HomePage() {
-  const { navItems, data, isError } = await getLayoutPageData("aktivity");
+  const { navItems, data, isError, offline } = await getLayoutPageData("aktivity");
 
   return (
     <Layout
@@ -19,6 +19,7 @@ export default async function HomePage() {
       initialNavItems={navItems}
       initialData={data}
       initialError={isError}
+      offline={offline}
     />
   );
 }

@@ -3,6 +3,7 @@ import { fetchAllEntryParams, fetchEntry, getLayoutPageData } from "@/lib/api";
 import { entryMetadata, pageMetadata } from "@/lib/metadata";
 
 export const revalidate = 600;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   return fetchAllEntryParams();
@@ -21,7 +22,10 @@ export async function generateMetadata({ params }) {
 
 export default async function EntryPage({ params }) {
   const { category, entry } = await params;
-  const { navItems, data, isError } = await getLayoutPageData(category, entry);
+  const { navItems, data, isError, offline } = await getLayoutPageData(
+    category,
+    entry,
+  );
 
   return (
     <Layout
@@ -30,6 +34,7 @@ export default async function EntryPage({ params }) {
       initialNavItems={navItems}
       initialData={data}
       initialError={isError}
+      offline={offline}
     />
   );
 }

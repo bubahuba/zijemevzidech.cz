@@ -15,6 +15,7 @@ export function Layout({
   initialNavItems,
   initialData,
   initialError,
+  offline,
 }) {
   const params = useParams();
   const category = categoryProp ?? params?.category;
@@ -40,7 +41,7 @@ export function Layout({
   });
 
   const categoryTitle = navItems?.find((item) => item.slug === cat)?.title;
-  const showError = initialError ?? isError;
+  const showError = !offline && (initialError ?? isError);
 
   if (showError) {
     return (
