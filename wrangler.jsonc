@@ -28,10 +28,12 @@
       "service": "zijemevzidech"
     }
   ],
-  // Zone routes (not custom_domain): works with existing proxied A records.
-  // Include bare host + /* — /* alone does not always match "/".
+  // Zone routes: proxied DNS alone is not enough — each hostname needs a route.
+  // Wildcard DNS (*.zijemevzidech.cz) does not create Worker routes.
   "routes": [
     { "pattern": "zijemevzidech.cz", "zone_name": "zijemevzidech.cz" },
-    { "pattern": "zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" }
+    { "pattern": "zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" },
+    { "pattern": "www.zijemevzidech.cz", "zone_name": "zijemevzidech.cz" },
+    { "pattern": "www.zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" }
   ]
 }
