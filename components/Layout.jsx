@@ -26,22 +26,27 @@ export function Layout({
     queryKey: ["menu"],
     queryFn: () => fetch(apiBase + "menu").then((res) => res.json()),
     initialData: initialNavItems,
-    staleTime: 1000 * 60 * 10,
+    // When SSR/build could not reach the API, always refetch in the browser.
+    staleTime: offline ? 0 : 1000 * 60 * 10,
   });
 
-  const { isPending, isError, data } = useQuery({
+  const { isPending, isError, isFetching, data } = useQuery({
     queryKey: [entry ? "entry/" + entry : "entries/c/" + cat],
-    retry: false,
+    retry: 1,
     queryFn: () =>
       fetch(
         entry ? apiBase + "entry/" + entry : apiBase + "entries/c/" + cat,
-      ).then((res) => res.json()),
+      ).then((res) => {
+        if (!res.ok) throw new Error(String(res.status));
+        return res.json();
+      }),
     initialData: initialData,
-    staleTime: 1000 * 60 * 10,
+    staleTime: offline ? 0 : 1000 * 60 * 10,
   });
 
   const categoryTitle = navItems?.find((item) => item.slug === cat)?.title;
-  const showError = !offline && (initialError ?? isError);
+  const showError =
+    !isFetching && (isError || (!offline && Boolean(initialError) && !data));
 
   if (showError) {
     return (

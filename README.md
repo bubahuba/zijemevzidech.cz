@@ -50,45 +50,34 @@ yarn deploy
 
 For Cloudflare Workers CI with separate build and deploy steps:
 
-- **Build command:** `yarn build:cloudflare`
+- **Build command:** `yarn build` (runs OpenNext → `.open-next/`)
 - **Deploy command:** `npx wrangler deploy --keep-vars`
 
-Do not use plain `yarn build` before deploy — that only runs `next build` and skips the OpenNext bundle (`.open-next/`).
+Plain Next only: `yarn build:next`. Static export: `yarn build:static`.
 
-### DNS (required for API fetches from the Worker)
-
-`UND_ERR_CONNECT_TIMEOUT` means the Worker/build cannot open TCP to the origin IP. Your host (WY-CLOUD) accepts **Cloudflare proxy** traffic (apex already works) but not direct Worker/CI egress. Fix: proxy `api` through Cloudflare.
-
-In **DNS** for `zijemevzidech.cz`, set:
+### DNS
 
 | Name | Type | Content | Proxy |
 |------|------|---------|-------|
-| `api` | A | `195.181.251.29` | **Proxied (orange cloud)** — click the grey cloud until it turns orange |
+| `api` | A | origin IP | **Proxied (orange)** — required for Worker runtime → API |
 | `@` / `www` | Worker custom domain | — | served by Worker `zijemevzidech` |
 
-SSL/TLS mode: **Full (Strict)**.
+SSL/TLS: **Full (Strict)**.
 
-Verify proxy is on (must NOT show the origin IP):
+### CI builds and the API
+
+Cloudflare Workers Builds **cannot** fetch CF-proxied hostnames (hairpin). The build therefore skips live API calls when `CI=true`, uses `data/static-paths.json` for routes, and lets the **browser** load content after deploy. Refresh paths after CMS changes:
 
 ```bash
-dig +short api.zijemevzidech.cz
-# expected: 188.114.x.x / 104.x.x.x (Cloudflare)
-# wrong:    195.181.251.29  ← still grey cloud
-
-curl -sI https://api.zijemevzidech.cz/json/menu | grep -i cf-ray
-# must print a cf-ray line
+yarn generate-paths
 ```
 
-Until that changes, server-side fetch will keep timing out. Browser → API can still work.
-
-Attach the site hostname in **Workers → zijemevzidech → Settings → Domains & Routes** (or uncomment `routes` with `custom_domain` in `wrangler.jsonc` and redeploy). Until that is set, the app is only on `https://zijemevzidech.shadow-hub.workers.dev/`.
+To force a local offline build: `SKIP_API_FETCH=1 yarn build`.
 
 ### Environment variables
 
-Set both:
-
-1. **Build variables** (Workers Builds) — needed during `next build` / SSG  
-2. **Runtime variables** (Worker Settings) — needed for ISR / server fetch  
+1. **Build variables** — at least `NEXT_PUBLIC_*` (inlined into the client bundle)  
+2. **Runtime variables** — `API_BASE` / `EE_BASE` / `SITE_BASE` for Worker ISR  
 
 | Variable | Example |
 |----------|---------|
@@ -98,4 +87,4 @@ Set both:
 | `API_BASE` / `EE_BASE` / `SITE_BASE` | same values (server / ISR) |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | (optional) |
 
-`wrangler.jsonc` already defines the non-secret `vars` above. Use `--keep-vars` on deploy so dashboard secrets are not wiped (see `yarn deploy`).
+`wrangler.jsonc` already defines these `vars`. Use `--keep-vars` on deploy so dashboard values are not wiped.
