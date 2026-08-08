@@ -32,8 +32,6 @@
   // Include bare host + /* — /* alone does not always match "/".
   "routes": [
     { "pattern": "zijemevzidech.cz", "zone_name": "zijemevzidech.cz" },
-    { "pattern": "zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" },
-    { "pattern": "www.zijemevzidech.cz", "zone_name": "zijemevzidech.cz" },
-    { "pattern": "www.zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" }
+    { "pattern": "zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" }
   ]
 }
