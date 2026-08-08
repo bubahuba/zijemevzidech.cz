@@ -66,11 +66,9 @@ SSL/TLS: **Full (Strict)**.
 
 ### CI builds and the API
 
-Cloudflare Workers Builds **cannot** fetch CF-proxied hostnames (hairpin). The build therefore skips live API calls when `CI=true`, uses `data/static-paths.json` for routes, and lets the **browser** load content after deploy. Refresh paths after CMS changes:
+Cloudflare Workers Builds **cannot** fetch CF-proxied hostnames (hairpin). The build skips live API calls when `CI=true`, pre-renders routes from `data/static-paths.json`, and the **browser / Worker** load live CMS data after deploy.
 
-```bash
-yarn generate-paths
-```
+**New CMS entries do not require regenerating that file** — `dynamicParams` serves unknown slugs on demand. `yarn generate-paths` is optional (only to pre-build more URLs into the next deploy).
 
 To force a local offline build: `SKIP_API_FETCH=1 yarn build`.
 
