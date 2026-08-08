@@ -7,6 +7,7 @@
     "nodejs_compat",
     "global_fetch_strictly_public"
   ],
+  "workers_dev": true,
   // Same-zone API fetches need api.* orange-clouded (proxied) — see README.
   // Keep api on the origin host; only the Next app runs on this Worker.
   "vars": {
@@ -27,8 +28,12 @@
       "service": "zijemevzidech"
     }
   ],
-   "routes": [
-     { "pattern": "zijemevzidech.cz", "custom_domain": true },
-     { "pattern": "www.zijemevzidech.cz", "custom_domain": true }
-   ]
+  // Zone routes (not custom_domain): works with existing proxied A records.
+  // Include bare host + /* — /* alone does not always match "/".
+  "routes": [
+    { "pattern": "zijemevzidech.cz", "zone_name": "zijemevzidech.cz" },
+    { "pattern": "zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" },
+    { "pattern": "www.zijemevzidech.cz", "zone_name": "zijemevzidech.cz" },
+    { "pattern": "www.zijemevzidech.cz/*", "zone_name": "zijemevzidech.cz" }
+  ]
 }

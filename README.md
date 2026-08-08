@@ -14,11 +14,13 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Build
 
 ```bash
-yarn build              # Next.js build (Cloudflare / Node)
-yarn build:cloudflare   # Full OpenNext bundle for Cloudflare
+yarn build              # next build only (used internally by OpenNext)
+yarn build:cloudflare   # OpenNext bundle for Cloudflare → .open-next/
 yarn build:static       # Static HTML export for shared hosting → out/
-yarn generate-paths     # Refresh data/static-paths.json when API unreachable at build
+yarn generate-paths     # Optional: refresh data/static-paths.json
 ```
+
+**Do not set `package.json` `"build"` to `opennextjs-cloudflare build`** — OpenNext calls `yarn build` itself; that caused an infinite loop and the 30‑minute CI timeout.
 
 ## Shared hosting (Apache / cPanel)
 
@@ -26,63 +28,48 @@ yarn generate-paths     # Refresh data/static-paths.json when API unreachable at
 yarn build:static
 ```
 
-Upload the contents of the **`out/`** directory to your web root (e.g. `public_html`). The build includes:
-
-- Pre-rendered HTML for all routes (48 pages)
-- OG meta tags in each page
-- `.htaccess` for Apache URL rewriting
-
-After adding new content, run `yarn generate-paths` and rebuild.
+Upload the contents of **`out/`** to the web root.
 
 ## Cloudflare
 
-Preview locally in the Workers runtime:
-
-```bash
-yarn preview
-```
-
-Deploy to Cloudflare (build + deploy in one step):
+### Local deploy (recommended while iterating)
 
 ```bash
 yarn deploy
 ```
 
-For Cloudflare Workers CI with separate build and deploy steps:
+This builds with `SKIP_API_FETCH=1`, deploys the Worker, and attaches custom domains from `wrangler.jsonc`.
 
-- **Build command:** `yarn build` (runs OpenNext → `.open-next/`)
-- **Deploy command:** `npx wrangler deploy --keep-vars`
+### Workers Builds (CI)
 
-Plain Next only: `yarn build:next`. Static export: `yarn build:static`.
+In the Worker → Settings → Builds:
+
+| Setting | Value |
+|---------|--------|
+| **Build command** | `yarn build:cloudflare` |
+| **Deploy command** | `npx opennextjs-cloudflare deploy -- --keep-vars` |
+
+Not `yarn build` (that is only `next build`).
 
 ### DNS
 
 | Name | Type | Content | Proxy |
 |------|------|---------|-------|
-| `api` | A | origin IP | **Proxied (orange)** — required for Worker runtime → API |
-| `@` / `www` | Worker custom domain | — | served by Worker `zijemevzidech` |
+| `api` | A | origin IP | **Proxied (orange)** — Worker runtime → API |
+| `ftp` | A | origin IP | **DNS only (grey)** — FTP clients use `ftp.zijemevzidech.cz` |
+| `@` / `www` | A → origin IP | **Proxied (orange)** + Worker routes `zijemevzidech.cz/*` |
+| `ftp` | A → origin IP | **DNS only (grey)** |
+
+Keep `@`/`www` orange-clouded. Routes in `wrangler.jsonc` send HTTP to the Worker (origin FTP files are ignored for the website).
 
 SSL/TLS: **Full (Strict)**.
 
-### CI builds and the API
+### CI and the API
 
-Cloudflare Workers Builds **cannot** fetch CF-proxied hostnames (hairpin). The build skips live API calls when `CI=true`, pre-renders routes from `data/static-paths.json`, and the **browser / Worker** load live CMS data after deploy.
+Workers Builds **cannot** call CF-proxied `api.*` (hairpin). `yarn build:cloudflare` sets `SKIP_API_FETCH=1`, uses `data/static-paths.json` for routes, and the browser/Worker load live CMS data after deploy.
 
-**New CMS entries do not require regenerating that file** — `dynamicParams` serves unknown slugs on demand. `yarn generate-paths` is optional (only to pre-build more URLs into the next deploy).
-
-To force a local offline build: `SKIP_API_FETCH=1 yarn build`.
+New CMS entries do **not** need `generate-paths` (`dynamicParams`).
 
 ### Environment variables
 
-1. **Build variables** — at least `NEXT_PUBLIC_*` (inlined into the client bundle)  
-2. **Runtime variables** — `API_BASE` / `EE_BASE` / `SITE_BASE` for Worker ISR  
-
-| Variable | Example |
-|----------|---------|
-| `NEXT_PUBLIC_API_BASE` | `https://api.zijemevzidech.cz/json/` |
-| `NEXT_PUBLIC_EE_BASE` | `https://api.zijemevzidech.cz/index.php` |
-| `NEXT_PUBLIC_SITE_BASE` | `https://zijemevzidech.cz/` |
-| `API_BASE` / `EE_BASE` / `SITE_BASE` | same values (server / ISR) |
-| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | (optional) |
-
-`wrangler.jsonc` already defines these `vars`. Use `--keep-vars` on deploy so dashboard values are not wiped.
+`wrangler.jsonc` already sets `API_BASE` / `NEXT_PUBLIC_*`. For CI, also set Build variables if you override them in the dashboard.
