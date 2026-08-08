@@ -9,6 +9,13 @@ import { Category } from "./Category";
 import { NotFound } from "./NotFound";
 import { apiBase } from "@/lib/constants";
 
+// Always re-check CMS in the browser so deletes/updates show without redeploy.
+const cmsQueryOptions = {
+  staleTime: 0,
+  refetchOnMount: "always",
+  refetchOnWindowFocus: true,
+};
+
 export function Layout({
   category: categoryProp,
   entry: entryProp,
@@ -26,11 +33,10 @@ export function Layout({
     queryKey: ["menu"],
     queryFn: () => fetch(apiBase + "menu").then((res) => res.json()),
     initialData: initialNavItems,
-    // When SSR/build could not reach the API, always refetch in the browser.
-    staleTime: offline ? 0 : 1000 * 60 * 10,
+    ...cmsQueryOptions,
   });
 
-  const { isPending, isError, isFetching, data } = useQuery({
+  const { isPending, isError, isFetching, data, isFetched } = useQuery({
     queryKey: [entry ? "entry/" + entry : "entries/c/" + cat],
     retry: 1,
     queryFn: () =>
@@ -41,12 +47,18 @@ export function Layout({
         return res.json();
       }),
     initialData: initialData,
-    staleTime: offline ? 0 : 1000 * 60 * 10,
+    ...cmsQueryOptions,
   });
 
   const categoryTitle = navItems?.find((item) => item.slug === cat)?.title;
+  // Deleted CMS entries come back as [] — treat as gone after a live fetch.
+  const entryGone =
+    Boolean(entry) && isFetched && Array.isArray(data) && data.length === 0;
   const showError =
-    !isFetching && (isError || (!offline && Boolean(initialError) && !data));
+    !isFetching &&
+    (isError ||
+      entryGone ||
+      (!offline && Boolean(initialError) && !data));
 
   if (showError) {
     return (

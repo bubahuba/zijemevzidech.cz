@@ -74,7 +74,7 @@ A **git pre-commit** hook (`.githooks/pre-commit`) runs `yarn generate-paths` an
 yarn install   # runs prepare → git config core.hooksPath .githooks
 ```
 
-If the API is down, the hook warns and still allows the commit. New CMS slugs also work without that file (`dynamicParams`).
+If the API is down, the hook warns and still allows the commit. New CMS slugs also work without that file (`dynamicParams`). Listing pages always refetch the API in the browser so CMS deletes/updates show without waiting on `generate-paths`.
 
 ### Environment variables
 

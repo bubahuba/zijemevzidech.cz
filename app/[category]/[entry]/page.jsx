@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { fetchAllEntryParams, fetchEntry, getLayoutPageData } from "@/lib/api";
 import { entryMetadata, pageMetadata } from "@/lib/metadata";
 
-export const revalidate = 600;
+export const revalidate = 60;
 export const dynamicParams = true; // new CMS slugs work without rebuilding static-paths
 
 export async function generateStaticParams() {

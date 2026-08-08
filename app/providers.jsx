@@ -9,7 +9,9 @@ export function Providers({ children }) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 1000 * 60 * 10,
+            staleTime: 0,
+            refetchOnMount: "always",
+            refetchOnWindowFocus: true,
           },
         },
       }),

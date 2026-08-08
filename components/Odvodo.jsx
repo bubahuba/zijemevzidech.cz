@@ -27,13 +27,15 @@ export function Odvodo({
         .then((res) => res.json())
         .then((data) => data.map(({ title, slug }) => ({ title, slug }))),
     initialData: initialLists,
-    staleTime: 1000 * 60 * 10,
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
   });
 
   const currentList =
     list && list !== "all"
-      ? lists?.find((item) => item.slug === list) ?? initialCurrentList
-      : initialCurrentList ?? lists?.[0];
+      ? lists?.find((item) => item.slug === list) ?? lists?.[0]
+      : lists?.[0] ?? initialCurrentList;
 
   const { data: entries } = useQuery({
     queryKey: [`markers-${currentList?.slug ?? "index"}`],
@@ -43,7 +45,9 @@ export function Odvodo({
         .then((res) => res.json())
         .then((data) => data[0].related),
     initialData: initialEntries,
-    staleTime: 1000 * 60 * 10,
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
   });
 
   const globalTime = initialGlobalTime;

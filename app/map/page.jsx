@@ -2,7 +2,7 @@ import { Odvodo } from "@/components/Odvodo";
 import { fetchOdvodoLists, getOdvodoPageData } from "@/lib/api";
 import { mapMetadata } from "@/lib/metadata";
 
-export const revalidate = 600;
+export const revalidate = 60;
 
 export async function generateMetadata() {
   const lists = await fetchOdvodoLists();

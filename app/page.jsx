@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { fetchMenu, getLayoutPageData } from "@/lib/api";
 import { categoryMetadata } from "@/lib/metadata";
 
-export const revalidate = 600;
+export const revalidate = 60;
 
 export async function generateMetadata() {
   const menu = await fetchMenu();
