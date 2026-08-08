@@ -8,6 +8,7 @@
     "build:cloudflare": "SKIP_API_FETCH=1 opennextjs-cloudflare build",
     "build:static": "STATIC_EXPORT=1 next build",
     "generate-paths": "node scripts/generate-paths.js",
+    "prepare": "git config core.hooksPath .githooks",
     "start": "next start",
     "lint": "next lint",
     "preview": "yarn build:cloudflare && opennextjs-cloudflare preview",

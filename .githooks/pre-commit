@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Refresh SSG route list from the live API before each commit (CF Builds cannot).
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+echo "pre-commit: yarn generate-paths"
+if yarn generate-paths; then
+  git add data/static-paths.json
+  echo "pre-commit: staged data/static-paths.json"
+else
+  echo "pre-commit: generate-paths failed (API down / offline). Commit continues with existing static-paths.json."
+  exit 0
+fi

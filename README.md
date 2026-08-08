@@ -68,7 +68,13 @@ SSL/TLS: **Full (Strict)**.
 
 Workers Builds **cannot** call CF-proxied `api.*` (hairpin). `yarn build:cloudflare` sets `SKIP_API_FETCH=1`, uses `data/static-paths.json` for routes, and the browser/Worker load live CMS data after deploy.
 
-New CMS entries do **not** need `generate-paths` (`dynamicParams`).
+A **git pre-commit** hook (`.githooks/pre-commit`) runs `yarn generate-paths` and stages `data/static-paths.json` when the API is reachable. Enable once after clone:
+
+```bash
+yarn install   # runs prepare → git config core.hooksPath .githooks
+```
+
+If the API is down, the hook warns and still allows the commit. New CMS slugs also work without that file (`dynamicParams`).
 
 ### Environment variables
 
