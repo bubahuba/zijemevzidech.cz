@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { GtagPageView } from "./GtagPageView";
+import { LogoZz2 } from "./LogoZz2";
 import { siteBase } from "@/lib/constants";
 
 export function Category({ data, categoryTitle }) {
@@ -43,7 +44,7 @@ export function Category({ data, categoryTitle }) {
               {galerie[0] ? (
                 <img src={galerie[0].small} alt={galerie[0].title} />
               ) : (
-                <img src="/images/logo-zz2.svg" alt="" style={{ width: "100%" }} />
+                <LogoZz2 style={{ width: "100%" }} />
               )}
             </Link>
           );

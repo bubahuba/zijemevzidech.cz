@@ -1,44 +1,143 @@
 {
   "categories": [
-    { "category": "aktivity" },
-    { "category": "odvodo" }
+    {
+      "category": "aktivity"
+    },
+    {
+      "category": "odvodo"
+    }
   ],
   "entries": [
-    { "category": "aktivity", "entry": "vikend-otevrenych-dvorku-a-domu-30-31.5-2026" },
-    { "category": "aktivity", "entry": "mista-a-mistri-popravci-kralovskych-mest-trebice-a-jihlavy" },
-    { "category": "aktivity", "entry": "komentovane-prochazky-zidovskou-ctvrti-v-trebici" },
-    { "category": "aktivity", "entry": "vikend-odvodo-20-21-9-2025" },
-    { "category": "aktivity", "entry": "mini-festival-izraelskych-filmu" },
-    { "category": "aktivity", "entry": "soucasny-izraelsky-film" },
-    { "category": "aktivity", "entry": "malovane-zidovske-mesto2" },
-    { "category": "aktivity", "entry": "slam-poetry-v-synagoze" },
-    { "category": "aktivity", "entry": "odvodo-26-27-4-2025" },
-    { "category": "aktivity", "entry": "jarni-trhy" },
-    { "category": "aktivity", "entry": "promitani-festivalu-kolnoa" },
-    { "category": "aktivity", "entry": "cestovatelska-prednaska-sebestiana-boka" },
-    { "category": "aktivity", "entry": "frida-orator-duo-dolezal" },
-    { "category": "aktivity", "entry": "radim-hanousek-aira-zoe" },
-    { "category": "aktivity", "entry": "na-vlastni-usi-jsem-o-tom-slysel" },
-    { "category": "aktivity", "entry": "domy-s-pribehy" },
-    { "category": "aktivity", "entry": "malovane-zidovske-mesto" },
-    { "category": "aktivity", "entry": "odvodo-2-3.8.2024" },
-    { "category": "aktivity", "entry": "odvodo-27-28-4-2024" },
-    { "category": "aktivity", "entry": "odvodo-23-24.3-2024" },
-    { "category": "odvodo", "entry": "vikend-otevrenych-dvorku-a-domu-30-31.5-2026" },
-    { "category": "odvodo", "entry": "vikend-odvodo-20-21-9-2025" },
-    { "category": "odvodo", "entry": "odvodo-26-27-4-2025" },
-    { "category": "odvodo", "entry": "domy-s-pribehy" },
-    { "category": "odvodo", "entry": "odvodo-2-3.8.2024" },
-    { "category": "odvodo", "entry": "odvodo-27-28-4-2024" },
-    { "category": "odvodo", "entry": "odvodo-23-24.3-2024" }
+    {
+      "category": "aktivity",
+      "entry": "vikend-otevrenych-dvorku-a-domu-30-31-5-2026"
+    },
+    {
+      "category": "aktivity",
+      "entry": "mista-a-mistri-popravci-kralovskych-mest-trebice-a-jihlavy"
+    },
+    {
+      "category": "aktivity",
+      "entry": "komentovane-prochazky-zidovskou-ctvrti-v-trebici"
+    },
+    {
+      "category": "aktivity",
+      "entry": "vikend-odvodo-20-21-9-2025"
+    },
+    {
+      "category": "aktivity",
+      "entry": "mini-festival-izraelskych-filmu"
+    },
+    {
+      "category": "aktivity",
+      "entry": "soucasny-izraelsky-film"
+    },
+    {
+      "category": "aktivity",
+      "entry": "malovane-zidovske-mesto2"
+    },
+    {
+      "category": "aktivity",
+      "entry": "slam-poetry-v-synagoze"
+    },
+    {
+      "category": "aktivity",
+      "entry": "odvodo-26-27-4-2025"
+    },
+    {
+      "category": "aktivity",
+      "entry": "jarni-trhy"
+    },
+    {
+      "category": "aktivity",
+      "entry": "promitani-festivalu-kolnoa"
+    },
+    {
+      "category": "aktivity",
+      "entry": "cestovatelska-prednaska-sebestiana-boka"
+    },
+    {
+      "category": "aktivity",
+      "entry": "frida-orator-duo-dolezal"
+    },
+    {
+      "category": "aktivity",
+      "entry": "radim-hanousek-aira-zoe"
+    },
+    {
+      "category": "aktivity",
+      "entry": "na-vlastni-usi-jsem-o-tom-slysel"
+    },
+    {
+      "category": "aktivity",
+      "entry": "domy-s-pribehy"
+    },
+    {
+      "category": "aktivity",
+      "entry": "malovane-zidovske-mesto"
+    },
+    {
+      "category": "aktivity",
+      "entry": "odvodo-2-3.8.2024"
+    },
+    {
+      "category": "aktivity",
+      "entry": "odvodo-27-28-4-2024"
+    },
+    {
+      "category": "aktivity",
+      "entry": "odvodo-23-24.3-2024"
+    },
+    {
+      "category": "odvodo",
+      "entry": "vikend-otevrenych-dvorku-a-domu-30-31-5-2026"
+    },
+    {
+      "category": "odvodo",
+      "entry": "vikend-odvodo-20-21-9-2025"
+    },
+    {
+      "category": "odvodo",
+      "entry": "odvodo-26-27-4-2025"
+    },
+    {
+      "category": "odvodo",
+      "entry": "domy-s-pribehy"
+    },
+    {
+      "category": "odvodo",
+      "entry": "odvodo-2-3.8.2024"
+    },
+    {
+      "category": "odvodo",
+      "entry": "odvodo-27-28-4-2024"
+    },
+    {
+      "category": "odvodo",
+      "entry": "odvodo-23-24.3-2024"
+    }
   ],
   "lists": [
-    { "list": "vikend-otevrenych-dvorku-a-domu-30-31.5-2026" },
-    { "list": "vikend-odvodo-20-21-9-2025" },
-    { "list": "odvodo-26-27-4-2025" },
-    { "list": "domy-s-pribehy" },
-    { "list": "odvodo-2-3.8.2024" },
-    { "list": "odvodo-27-28-4-2024" },
-    { "list": "odvodo-23-24.3-2024" }
+    {
+      "list": "vikend-otevrenych-dvorku-a-domu-30-31-5-2026"
+    },
+    {
+      "list": "vikend-odvodo-20-21-9-2025"
+    },
+    {
+      "list": "odvodo-26-27-4-2025"
+    },
+    {
+      "list": "domy-s-pribehy"
+    },
+    {
+      "list": "odvodo-2-3.8.2024"
+    },
+    {
+      "list": "odvodo-27-28-4-2024"
+    },
+    {
+      "list": "odvodo-23-24.3-2024"
+    }
   ]
 }

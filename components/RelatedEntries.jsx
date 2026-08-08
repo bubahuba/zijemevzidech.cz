@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import MarkerIcon from "./assets/markerIcon.svg";
+import { LogoZz2 } from "./LogoZz2";
 import { DEFAULT_COLOR } from "@/lib/constants";
 
 export function Icon({ number }) {
@@ -62,7 +63,7 @@ export function RelatedEntries({ entries, link, globalTime }) {
           style={{ justifyContent: "flex-end" }}
           href={link}
         >
-          <img src="/images/logo-zz2.svg" alt="" />
+          <LogoZz2 />
         </Link>
       </div>
     </>

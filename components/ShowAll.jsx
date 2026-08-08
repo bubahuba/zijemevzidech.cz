@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Icon } from "./RelatedEntries";
+import { LogoZz2 } from "./LogoZz2";
 
 export function ShowAll({ entries, list, globalTime }) {
   if (!entries?.length || !list) return null;
@@ -39,7 +40,7 @@ export function ShowAll({ entries, list, globalTime }) {
         style={{ justifyContent: "flex-end" }}
         href={`/map/${list.slug}`}
       >
-        <img src="/images/logo-zz2.svg" alt="" />
+        <LogoZz2 />
       </Link>
     </div>
   );
