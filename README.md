@@ -48,7 +48,7 @@ In the Worker → Settings → Builds:
 |---------|--------|
 | **Build command** | `yarn build:cloudflare` |
 | **Deploy command** | `npx opennextjs-cloudflare deploy -- --keep-vars` |
-
+ 
 Not `yarn build` (that is only `next build`).
 
 ### DNS
