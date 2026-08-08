@@ -7,6 +7,13 @@
     "nodejs_compat",
     "global_fetch_strictly_public"
   ],
+  // Same-zone API fetches need api.* orange-clouded (proxied) — see README.
+  // Keep api on the origin host; only the Next app runs on this Worker.
+  "vars": {
+    "API_BASE": "https://api.zijemevzidech.cz/json/",
+    "EE_BASE": "https://api.zijemevzidech.cz/index.php",
+    "SITE_BASE": "https://zijemevzidech.cz/"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
@@ -16,5 +23,9 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "zijemevzidech"
     }
-  ]
+  ],
+   "routes": [
+     { "pattern": "zijemevzidech.cz", "custom_domain": true },
+     { "pattern": "www.zijemevzidech.cz", "custom_domain": true }
+   ]
 }
