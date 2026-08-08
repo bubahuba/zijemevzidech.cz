@@ -57,16 +57,29 @@ Do not use plain `yarn build` before deploy — that only runs `next build` and 
 
 ### DNS (required for API fetches from the Worker)
 
-The Worker uses `global_fetch_strictly_public`, so same-zone `fetch()` goes through Cloudflare’s front door. That only works if the API hostname is **proxied** (orange cloud):
+`UND_ERR_CONNECT_TIMEOUT` means the Worker/build cannot open TCP to the origin IP. Your host (WY-CLOUD) accepts **Cloudflare proxy** traffic (apex already works) but not direct Worker/CI egress. Fix: proxy `api` through Cloudflare.
+
+In **DNS** for `zijemevzidech.cz`, set:
 
 | Name | Type | Content | Proxy |
 |------|------|---------|-------|
-| `api` | A | origin IP (e.g. `195.181.251.29`) | **Proxied** (orange) |
+| `api` | A | `195.181.251.29` | **Proxied (orange cloud)** — click the grey cloud until it turns orange |
 | `@` / `www` | Worker custom domain | — | served by Worker `zijemevzidech` |
 
-Keep SSL/TLS mode **Full (Strict)** (origin already has a valid Let’s Encrypt cert for `api.zijemevzidech.cz`).
+SSL/TLS mode: **Full (Strict)**.
 
-If `api` stays DNS-only (grey cloud), the Worker logs `[api] fetch failed https://api.zijemevzidech.cz/json/...` and pages render offline. Your browser can still open the API URL because it talks to the origin directly.
+Verify proxy is on (must NOT show the origin IP):
+
+```bash
+dig +short api.zijemevzidech.cz
+# expected: 188.114.x.x / 104.x.x.x (Cloudflare)
+# wrong:    195.181.251.29  ← still grey cloud
+
+curl -sI https://api.zijemevzidech.cz/json/menu | grep -i cf-ray
+# must print a cf-ray line
+```
+
+Until that changes, server-side fetch will keep timing out. Browser → API can still work.
 
 Attach the site hostname in **Workers → zijemevzidech → Settings → Domains & Routes** (or uncomment `routes` with `custom_domain` in `wrangler.jsonc` and redeploy). Until that is set, the app is only on `https://zijemevzidech.shadow-hub.workers.dev/`.
 
@@ -79,9 +92,10 @@ Set both:
 
 | Variable | Example |
 |----------|---------|
-| `API_BASE` | `https://api.zijemevzidech.cz/json/` |
-| `EE_BASE` | `https://api.zijemevzidech.cz/index.php` |
-| `SITE_BASE` | `https://zijemevzidech.cz/` |
+| `NEXT_PUBLIC_API_BASE` | `https://api.zijemevzidech.cz/json/` |
+| `NEXT_PUBLIC_EE_BASE` | `https://api.zijemevzidech.cz/index.php` |
+| `NEXT_PUBLIC_SITE_BASE` | `https://zijemevzidech.cz/` |
+| `API_BASE` / `EE_BASE` / `SITE_BASE` | same values (server / ISR) |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | (optional) |
 
 `wrangler.jsonc` already defines the non-secret `vars` above. Use `--keep-vars` on deploy so dashboard secrets are not wiped (see `yarn deploy`).

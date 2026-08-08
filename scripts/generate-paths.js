@@ -1,7 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
-const base = process.env.API_BASE || "https://zijemevzidech.cz/api/json/";
+const base =
+  process.env.API_BASE ||
+  process.env.NEXT_PUBLIC_API_BASE ||
+  "https://api.zijemevzidech.cz/json/";
 const out = path.join(__dirname, "../data/static-paths.json");
 
 async function run() {

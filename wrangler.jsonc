@@ -12,7 +12,10 @@
   "vars": {
     "API_BASE": "https://api.zijemevzidech.cz/json/",
     "EE_BASE": "https://api.zijemevzidech.cz/index.php",
-    "SITE_BASE": "https://zijemevzidech.cz/"
+    "SITE_BASE": "https://zijemevzidech.cz/",
+    "NEXT_PUBLIC_API_BASE": "https://api.zijemevzidech.cz/json/",
+    "NEXT_PUBLIC_EE_BASE": "https://api.zijemevzidech.cz/index.php",
+    "NEXT_PUBLIC_SITE_BASE": "https://zijemevzidech.cz/"
   },
   "assets": {
     "directory": ".open-next/assets",
