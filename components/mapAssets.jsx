@@ -623,7 +623,12 @@ export const Dropdown = ({ list, options }) => {
 
 const getImage = (item, title = "", index) => {
   return (
-    <a href={item.large} data-fslightbox={title} key={index}>
+    <a
+      href={item.large}
+      data-fslightbox={title}
+      data-type="image"
+      key={index}
+    >
       <img src={item.small} alt={title} className="thumb" />
     </a>
   );

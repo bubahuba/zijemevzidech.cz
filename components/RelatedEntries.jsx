@@ -44,6 +44,7 @@ export function RelatedEntries({ entries, link, globalTime }) {
               <a
                 href={entry.galerie[0].large}
                 data-fslightbox={link}
+                data-type="image"
                 className="thumb"
               >
                 <img
